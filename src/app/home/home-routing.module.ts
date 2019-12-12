@@ -22,12 +22,15 @@ const routes: Routes = [
 			{
 				// Route that loads the TripList module
 				path: 'profile',
-				loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+				loadChildren: () => import('./profile/profile.module').then((m) => m.ProfilePageModule)
+			},
+			{
+				// Route that loads the TripList module
+				path: 'create-trip',
+				loadChildren: () => import('./create-trip/create-trip.module').then((m) => m.CreateTripPageModule)
 			}
 		]
-	},
-
-
+	}
 ];
 
 @NgModule({
