@@ -11,7 +11,7 @@ const routes: Routes = [
 			{
 				// Route that loads the TripList module
 				path: 'create-trip',
-				loadChildren: () => import('../create-trip/create-trip.module').then((m) => m.CreateTripPageModule)
+				loadChildren: () => import('../../create-trip/create-trip.module').then((m) => m.CreateTripPageModule)
 			},
 			{
 				// Route that loads the TripList module
