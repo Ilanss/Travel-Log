@@ -17,9 +17,9 @@ export class HomePage {
 
 	constructor() {
 		this.tabs = [
-			{ title: 'New Trip', icon: 'add', path: 'create-trip' },
-			{ title: 'Places Map', icon: 'map', path: 'places-map' },
-			{ title: 'Trip List', icon: 'list', path: 'trip-list' }
+			{ title: '', icon: 'search', path: 'create-trip' },
+			{ title: '', icon: 'pin', path: 'places-map' },
+			{ title: '', icon: 'person', path: 'trip-list' }
 		];
 	}
 }
