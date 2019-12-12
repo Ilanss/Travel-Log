@@ -16,11 +16,13 @@ const routes: Routes = [
 	},
 	{
 		path: 'create-place',
-		loadChildren: () => import('./create-place/create-place.module').then((m) => m.CreatePlacePageModule)
+		loadChildren: () => import('./create-place/create-place.module').then((m) => m.CreatePlacePageModule),
+		canActivate: [ AuthGuard ]
 	},
 	{
 		path: 'create-trip',
-		loadChildren: () => import('./create-trip/create-trip.module').then((m) => m.CreateTripPageModule)
+		loadChildren: () => import('./create-trip/create-trip.module').then((m) => m.CreateTripPageModule),
+		canActivate: [ AuthGuard ]
 	}
 ];
 

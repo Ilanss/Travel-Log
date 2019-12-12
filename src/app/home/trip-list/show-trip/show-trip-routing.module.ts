@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ShowTripPage
+  },
+  {
+    path: 'show-place',
+    loadChildren: () => import('./show-place/show-place.module').then( m => m.ShowPlacePageModule)
   }
 ];
 

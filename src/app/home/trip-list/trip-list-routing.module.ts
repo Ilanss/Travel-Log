@@ -16,10 +16,15 @@ const routes: Routes = [
 			{
 				// Route that loads the TripList module
 				path: 'show-trip',
-				loadChildren: () => import('../show-trip/show-trip.module').then((m) => m.ShowTripPageModule)
+				loadChildren: () => import('./show-trip/show-trip.module').then((m) => m.ShowTripPageModule)
 			}
 		]
-	}
+	},
+  {
+    path: 'show-trip',
+    loadChildren: () => import('./show-trip/show-trip.module').then( m => m.ShowTripPageModule)
+  }
+
 ];
 
 @NgModule({
