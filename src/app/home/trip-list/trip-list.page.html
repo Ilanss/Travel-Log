@@ -7,7 +7,7 @@
 <ion-content class="ion-padding">
     Let's create a trip list.
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button routerLink="trip-list" routerLinkActive="active">
+        <ion-fab-button (click)="newTrip()">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>

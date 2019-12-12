@@ -23,18 +23,17 @@ const routes: Routes = [
 				// Route that loads the TripList module
 				path: 'profile',
 				loadChildren: () => import('./profile/profile.module').then((m) => m.ProfilePageModule)
-			},  {
+			},
+			{
 				path: 'show-trip',
-				loadChildren: () => import('./show-trip/show-trip.module').then( m => m.ShowTripPageModule)
-			  },
-			  {
+				loadChildren: () => import('./show-trip/show-trip.module').then((m) => m.ShowTripPageModule)
+			},
+			{
 				path: 'show-place',
-				loadChildren: () => import('./show-place/show-place.module').then( m => m.ShowPlacePageModule)
-			  }
+				loadChildren: () => import('./show-place/show-place.module').then((m) => m.ShowPlacePageModule)
+			}
 		]
 	}
-
-
 ];
 
 @NgModule({
