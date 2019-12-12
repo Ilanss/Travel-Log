@@ -10,6 +10,11 @@ const routes: Routes = [
 		component: HomePage,
 		children: [
 			{
+				path:'',
+				redirectTo: 'trip-list',
+				pathMatch: 'full'
+			},
+			{
 				// Route that loads the CreateTrip module
 				path: 'search',
 				loadChildren: () => import('./search/search.module').then((m) => m.SearchPageModule)
