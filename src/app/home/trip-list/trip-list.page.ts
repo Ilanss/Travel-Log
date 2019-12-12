@@ -19,14 +19,14 @@ export class TripListPage implements OnInit {
 
 	ionViewDidLoad() {
 		// TODO: make an HTTP request to retrieve the trips.
-		const url = 'https://comem-travel-log-api.herokuapp.com/api/trips';
+		const url = '/api/trips';
 		this.http.get(url).subscribe((trips) => {
 			console.log('trips loaded', trips);
 		});
 	}
 
 	ngOnInit() {
-		const url = `${environment.apiUrl}/trips`;
+		const url = '/api/trips';
 		this.http.get(url).subscribe((trips) => {
 			console.log(`Trips loaded`, trips);
 		});
