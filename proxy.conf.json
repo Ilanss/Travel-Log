@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "https://comem-travel-log-m46-a.herokuapp.com",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": "/api"
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

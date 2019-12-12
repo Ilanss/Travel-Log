@@ -43,7 +43,7 @@ export class AuthService {
 	}
 
 	logIn(authRequest: AuthRequest): Observable<User> {
-		const authUrl = `${environment.apiUrl}/auth`;
+		const authUrl = '/api/auth';
 		return this.http.post<AuthResponse>(authUrl, authRequest).pipe(
 			// TODO: delay the observable stream while persisting the authentication response.
 			delayWhen((auth) => {
