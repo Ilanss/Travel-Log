@@ -11,21 +11,23 @@ const routes: Routes = [
 		children: [
 			{
 				// Route that loads the CreateTrip module
-				path: 'create-trip',
-				loadChildren: () => import('./create-trip/create-trip.module').then((m) => m.CreateTripPageModule)
+				path: 'search',
+				loadChildren: () => import('./search/search.module').then((m) => m.SearchPageModule)
 			},
 			{
 				// Route that loads the PlacesMap module
-				path: 'places-map',
-				loadChildren: () => import('./places-map/places-map.module').then((m) => m.PlacesMapPageModule)
+				path: 'trip-list',
+				loadChildren: () => import('./trip-list/trip-list.module').then((m) => m.TripListPageModule)
 			},
 			{
 				// Route that loads the TripList module
-				path: 'trip-list',
-				loadChildren: () => import('./trip-list/trip-list.module').then((m) => m.TripListPageModule)
+				path: 'profile',
+				loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
 			}
 		]
-	}
+	},
+
+
 ];
 
 @NgModule({
