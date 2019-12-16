@@ -59,4 +59,8 @@ export class TripListPage implements OnInit {
 	newPlace() {
 		this.router.navigateByUrl('/create-place');
 	}
+
+	onMapReady(map: Map) {
+		setTimeout(() => map.invalidateSize(), 0);
+	}
 }
