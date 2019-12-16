@@ -35,4 +35,7 @@ export class TripListPage implements OnInit {
 	newTrip() {
 		this.router.navigateByUrl('/create-trip');
 	}
+	newPlace() {
+		this.router.navigateByUrl('/create-place');
+	}
 }
