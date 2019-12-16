@@ -9,8 +9,6 @@ import { AuthRequest } from '../models/auth-request';
 
 import { Storage } from '@ionic/storage';
 
-import { environment } from 'src/environments/environment';
-
 /**
  * Authentication service for login/logout.
  */
