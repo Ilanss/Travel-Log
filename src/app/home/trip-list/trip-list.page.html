@@ -6,6 +6,12 @@
 
 <ion-content class="ion-padding">
     Let's create a trip list.
+    <ion-list>
+        <ion-item *ngFor='let trip of trips'>
+            <ion-label>{{trip.title}}</ion-label>
+            <p>{{trip.title}}</p>
+        </ion-item>
+    </ion-list>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button (click)="newTrip()">
             <ion-icon name="add"></ion-icon>
@@ -14,10 +20,5 @@
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>
-    <ion-list>
-        <ion-item *ngFor='let trip of trips'>
-            <ion-label>{{trip.title}}</ion-label>
-            <p>{{trip.title}}</p>
-        </ion-item>
-    </ion-list>
+
 </ion-content>

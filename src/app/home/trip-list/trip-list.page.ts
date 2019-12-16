@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { Trip } from '../../models/trip';
 
 @Component({
 	selector: 'app-trip-list',
@@ -10,6 +11,8 @@ import { Router } from '@angular/router';
 	styleUrls: [ './trip-list.page.scss' ]
 })
 export class TripListPage implements OnInit {
+	// devrait être Trip
+	trips: any = [];
 	constructor(
 		private auth: AuthService,
 		// TODO: inject the HTTP client.
@@ -17,17 +20,10 @@ export class TripListPage implements OnInit {
 		private router: Router
 	) {}
 
-	ionViewDidLoad() {
-		// TODO: make an HTTP request to retrieve the trips.
-		const url = '/api/trips';
-		this.http.get(url).subscribe((trips) => {
-			console.log('trips loaded', trips);
-		});
-	}
-
 	ngOnInit() {
 		const url = '/api/trips';
 		this.http.get(url).subscribe((trips) => {
+			this.trips = trips;
 			console.log(`Trips loaded`, trips);
 		});
 	}
