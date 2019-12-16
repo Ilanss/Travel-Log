@@ -8,7 +8,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
+// camera
+import { Camera } from '@ionic-native/camera/ngx';
 //auth service
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -36,7 +37,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 		SplashScreen,
 		Geolocation,
 		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-		{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorProvider, multi: true }
+		{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorProvider, multi: true },
+		Camera
 	],
 	bootstrap: [ AppComponent ]
 })
