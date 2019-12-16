@@ -7,14 +7,10 @@ import { IonicModule } from '@ionic/angular';
 import { TripListPageRoutingModule } from './trip-list-routing.module';
 
 import { TripListPage } from './trip-list.page';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    TripListPageRoutingModule
-  ],
-  declarations: [TripListPage]
+	imports: [ CommonModule, FormsModule, IonicModule, TripListPageRoutingModule, LeafletModule ],
+	declarations: [ TripListPage ]
 })
 export class TripListPageModule {}
