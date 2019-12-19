@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { Trip } from '../../models/trip';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
-import { latLng, MapOptions, tileLayer } from 'leaflet';
+import { latLng, MapOptions, tileLayer, Map } from 'leaflet';
 
 @Component({
 	selector: 'app-trip-list',
@@ -15,7 +15,7 @@ import { latLng, MapOptions, tileLayer } from 'leaflet';
 export class TripListPage implements OnInit {
 	// devrait être Trip
 	trips: any = [];
-	MapOptions: any;
+	mapOptions: any;
 	constructor(
 		private auth: AuthService,
 		// TODO: inject the HTTP client.
@@ -23,7 +23,7 @@ export class TripListPage implements OnInit {
 		private geolocation: Geolocation,
 		private router: Router
 	) {
-		this.MapOptions = {
+		this.mapOptions = {
 			layers: [ tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }) ],
 			zoom: 13,
 			center: latLng(46.778186, 6.641524)
