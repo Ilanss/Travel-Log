@@ -58,4 +58,10 @@ export class TripListPage implements OnInit {
 	onMapReady(map: Map) {
 		setTimeout(() => map.invalidateSize(), 0);
 	}
+
+	showTrip(tripId) {
+		this.router.navigateByUrl('/home/show-trip');
+		console.log('show my trip');
+		console.log(tripId);
+	}
 }

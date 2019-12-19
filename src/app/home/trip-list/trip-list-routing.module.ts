@@ -14,12 +14,7 @@ const routes: Routes = [
 				loadChildren: () => import('./show-trip/show-trip.module').then((m) => m.ShowTripPageModule)
 			}
 		]
-	},
-  {
-    path: 'show-trip',
-    loadChildren: () => import('./show-trip/show-trip.module').then( m => m.ShowTripPageModule)
 	}
-
 ];
 
 @NgModule({

@@ -10,7 +10,7 @@ const routes: Routes = [
 		component: HomePage,
 		children: [
 			{
-				path:'',
+				path: '',
 				redirectTo: 'trip-list',
 				pathMatch: 'full'
 			},
@@ -28,6 +28,10 @@ const routes: Routes = [
 				// Route that loads the TripList module
 				path: 'profile',
 				loadChildren: () => import('./profile/profile.module').then((m) => m.ProfilePageModule)
+			},
+			{
+				path: 'show-trip/:id',
+				loadChildren: () => import('./trip-list/show-trip/show-trip.module').then((m) => m.ShowTripPageModule)
 			}
 		]
 	}

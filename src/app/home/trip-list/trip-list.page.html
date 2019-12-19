@@ -7,9 +7,9 @@
 <ion-content class="ion-padding">
     Let's create a trip list.
     <ion-list>
-        <ion-item *ngFor='let trip of trips'>
+        <ion-item *ngFor='let trip of trips' [routerLink]="['/home/show-trip', trip.id] ">
             <ion-label>{{trip.title}}</ion-label>
-            <p>{{trip.title}}</p>
+            <p>{{trip.description}}</p>
         </ion-item>
     </ion-list>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -20,5 +20,5 @@
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>
-    <!--  <div class="map" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"></div> -->
+    <!--  <div class="map " leaflet [leafletOptions]="mapOptions " (leafletMapReady)="onMapReady($event) "></div> -->
 </ion-content>
