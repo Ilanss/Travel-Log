@@ -15,6 +15,7 @@ import { latLng, MapOptions, tileLayer } from 'leaflet';
 export class TripListPage implements OnInit {
 	// devrait être Trip
 	trips: any = [];
+	MapOptions: any;
 	constructor(
 		private auth: AuthService,
 		// TODO: inject the HTTP client.
@@ -22,7 +23,7 @@ export class TripListPage implements OnInit {
 		private geolocation: Geolocation,
 		private router: Router
 	) {
-		this.mapOptions = {
+		this.MapOptions = {
 			layers: [ tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }) ],
 			zoom: 13,
 			center: latLng(46.778186, 6.641524)
