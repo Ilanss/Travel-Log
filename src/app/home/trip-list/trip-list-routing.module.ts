@@ -10,11 +10,6 @@ const routes: Routes = [
 		children: [
 			{
 				// Route that loads the TripList module
-				path: 'create-trip',
-				loadChildren: () => import('../../create-trip/create-trip.module').then((m) => m.CreateTripPageModule)
-			},
-			{
-				// Route that loads the TripList module
 				path: 'show-trip',
 				loadChildren: () => import('./show-trip/show-trip.module').then((m) => m.ShowTripPageModule)
 			}
@@ -23,7 +18,7 @@ const routes: Routes = [
   {
     path: 'show-trip',
     loadChildren: () => import('./show-trip/show-trip.module').then( m => m.ShowTripPageModule)
-  }
+	}
 
 ];
 
