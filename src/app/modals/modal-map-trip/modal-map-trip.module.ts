@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ModalMapTripPageRoutingModule } from './modal-map-trip-routing.module';
 
 import { ModalMapTripPage } from './modal-map-trip.page';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ModalMapTripPageRoutingModule
+    ModalMapTripPageRoutingModule,
+    LeafletModule
   ],
   declarations: [ModalMapTripPage]
 })
