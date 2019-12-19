@@ -10,10 +10,10 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+    <ion-button (click)="openModalMapTrip()">Open modal</ion-button>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button (click)="newPlace()">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>
-    <div class="map " leaflet [leafletOptions]="mapOptions " (leafletMapReady)="onMapReady($event) "></div>
 </ion-content>
