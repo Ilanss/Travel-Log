@@ -6,12 +6,12 @@
                 <ion-icon name='arrow-back'></ion-icon>
             </ion-button>
         </ion-buttons>
-        <ion-buttons slot="end" *ngIf="tripEdit; else elseBlock">
+        <ion-buttons slot="end" *ngIf="tripEdit; else checkmark">
             <ion-button (click)="settings()">
                 <ion-icon name='settings'></ion-icon>
             </ion-button>
         </ion-buttons>
-        <ng-template #elseBlock>
+        <ng-template #checkmark>
             <ion-buttons slot="end">
                 <ion-button (click)="settings()">
                     <ion-icon name='checkmark'></ion-icon>
@@ -23,6 +23,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+    <h3>Description</h3>
     <p>{{trip?.description}}</p>
     <h3>Places</h3>
     <ion-list *ngFor='let place of places'>
@@ -34,9 +35,13 @@
         </ion-item>
     </ion-list>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button (click)="newPlace()">
+        <ion-fab-button (click)="newPlace()" *ngIf="tripEdit; else trashButton">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
+        <ng-template #trashButton>
+            <ion-fab-button color="danger" (click)="delatePlace()">
+                <ion-icon name="trash"></ion-icon>
+            </ion-fab-button>
+        </ng-template>
     </ion-fab>
-    <<<<<<< HEAD=======>>>>>>> 288d9e7743cbb5b4eac14e648beb0ad7d3c77b53
 </ion-content>
