@@ -48,7 +48,7 @@ export class ShowTripPage implements OnInit {
 		const placesUrl = '/api/places/';
 		this.http
 			.get(placesUrl, {
-				params: { trip: this.id }
+				params: { trip: String(this.id) }
 			})
 			.subscribe((places) => {
 				this.places += places;
