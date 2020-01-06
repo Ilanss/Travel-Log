@@ -7,18 +7,16 @@ const routes: Routes = [
 	{
 		path: '',
 		component: TripListPage,
-		children: [
-			{
-				// Route that loads the TripList module
-				path: 'show-trip',
-				loadChildren: () => import('./show-trip/show-trip.module').then((m) => m.ShowTripPageModule)
-			}
-		]
+	}, {
+		// Route that loads the TripList module
+		path: 'show-trip',
+		loadChildren: () => import('./show-trip/show-trip.module').then((m) => m.ShowTripPageModule)
 	}
+
 ];
 
 @NgModule({
-	imports: [ RouterModule.forChild(routes) ],
-	exports: [ RouterModule ]
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule]
 })
-export class TripListPageRoutingModule {}
+export class TripListPageRoutingModule { }
