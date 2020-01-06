@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>Show-trip</ion-title>
+        <ion-title>{{trip?.title}}</ion-title>
         <ion-buttons slot="start">
             <ion-button (click)="back()">
                 <ion-icon name='arrow-back'></ion-icon>
@@ -10,6 +10,16 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+    <p>{{trip?.description}}</p>
+    <h2>Places</h2>
+    <ion-list *ngFor='let places of places'>
+        <ion-item (click)="showMap(place?.id)">
+            <ion-label>
+                {{place?.name}}
+            </ion-label>
+            <ion-icon name="map" slot="end"></ion-icon>
+        </ion-item>
+    </ion-list>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button (click)="newPlace()">
             <ion-icon name="add"></ion-icon>

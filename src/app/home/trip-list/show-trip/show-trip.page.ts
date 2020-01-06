@@ -16,7 +16,7 @@ export class ShowTripPage implements OnInit {
 	id: number;
 	private sub: any;
 	trip: object;
-	places: any;
+	places: object;
 	mapOptions: any;
 	constructor(
 		private router: Router,
@@ -35,7 +35,7 @@ export class ShowTripPage implements OnInit {
 		//get id from url params
 		this.sub = this.route.params.subscribe((params) => {
 			this.id = params['id']; // (+) converts string 'id' to a number
-			//console.log(this.id);
+			console.log(this.id);
 			// In a real app: dispatch action to load the details here.
 		});
 		//API call to retrive trip data
@@ -44,16 +44,12 @@ export class ShowTripPage implements OnInit {
 			this.trip = trip;
 			console.log(`Trip info loaded`, trip);
 		});
-		//API call to retrive place data
-		const placesUrl = '/api/places/';
-		this.http
-			.get(placesUrl, {
-				params: { trip: this.id }
-			})
-			.subscribe((places) => {
-				this.places += places;
-				console.log(`Places info loaded`, places);
-			});
+		//API call to retrive place data -- BUG
+		const placesUrl = '/api/places/?trip=' + this.id;
+		this.http.get(placesUrl).subscribe((places) => {
+			this.places = places;
+			console.log(`Places info loaded`, places);
+		});
 		//geocalisation call for user position data
 		this.geolocation
 			.getCurrentPosition()
@@ -64,6 +60,9 @@ export class ShowTripPage implements OnInit {
 			.catch((err) => {
 				console.warn(`Could not retrieve user position because: ${err.message}`);
 			});
+	}
+	showMap(mapId) {
+		//show modal with map
 	}
 	onMapReady(map: Map) {
 		setTimeout(() => map.invalidateSize(), 0);
