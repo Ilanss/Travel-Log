@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth.service';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Trip } from '../../models/trip';
-import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
-import { latLng, MapOptions, tileLayer, Map } from 'leaflet';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
 	selector: 'app-trip-list',
@@ -23,11 +20,6 @@ export class TripListPage implements OnInit {
 		private geolocation: Geolocation,
 		private router: Router
 	) {
-		this.mapOptions = {
-			layers: [ tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }) ],
-			zoom: 13,
-			center: latLng(46.778186, 6.641524)
-		};
 	}
 
 	ngOnInit() {
@@ -37,26 +29,19 @@ export class TripListPage implements OnInit {
 			console.log(`Trips loaded`, trips);
 		});
 		//geocalisation
-		this.geolocation
-			.getCurrentPosition()
-			.then((position: Geoposition) => {
-				const coords = position.coords;
-				console.log(`User is at ${coords.longitude}, ${coords.latitude}`);
-			})
-			.catch((err) => {
-				console.warn(`Could not retrieve user position because: ${err.message}`);
-			});
+		// this.geolocation
+		// 	.getCurrentPosition()
+		// 	.then((position: Geoposition) => {
+		// 		const coords = position.coords;
+		// 		console.log(`User is at ${coords.longitude}, ${coords.latitude}`);
+		// 	})
+		// 	.catch((err) => {
+		// 		console.warn(`Could not retrieve user position because: ${err.message}`);
+		// 	});
 	}
 
 	newTrip() {
 		this.router.navigateByUrl('/create-trip');
-	}
-	newPlace() {
-		this.router.navigateByUrl('/create-place');
-	}
-
-	onMapReady(map: Map) {
-		setTimeout(() => map.invalidateSize(), 0);
 	}
 
 	showTrip(tripId) {
