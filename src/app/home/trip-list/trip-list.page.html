@@ -5,7 +5,6 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-    Let's create a trip list.
     <ion-list>
         <ion-item *ngFor='let trip of trips' [routerLink]="['/home/show-trip', trip.id] ">
             <ion-label>{{trip.title}}</ion-label>

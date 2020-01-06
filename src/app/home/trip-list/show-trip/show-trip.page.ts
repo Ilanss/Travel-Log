@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { Trip } from '../../../models/trip';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { latLng, MapOptions, tileLayer, Map } from 'leaflet';
+
 @Component({
 	selector: 'app-show-trip',
 	templateUrl: './show-trip.page.html',
@@ -15,9 +16,10 @@ import { latLng, MapOptions, tileLayer, Map } from 'leaflet';
 export class ShowTripPage implements OnInit {
 	id: number;
 	private sub: any;
-	trip: object;
-	places: object;
+	trip: any;
+	places: any;
 	mapOptions: any;
+	tripEdit: boolean;
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
@@ -29,6 +31,7 @@ export class ShowTripPage implements OnInit {
 			zoom: 13,
 			center: latLng(46.778186, 6.641524)
 		};
+		this.tripEdit = true;
 	}
 
 	ngOnInit() {
@@ -73,7 +76,9 @@ export class ShowTripPage implements OnInit {
 	newPlace() {
 		this.router.navigateByUrl('/create-place');
 	}
-
+	settings() {
+		this.tripEdit = !this.tripEdit;
+	}
 	back() {
 		this.router.navigateByUrl('/home/trip-list');
 	}

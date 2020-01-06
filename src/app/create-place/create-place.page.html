@@ -1,16 +1,16 @@
 <ion-header>
-  <ion-toolbar>
-      <ion-title>Create-place</ion-title>
-      <ion-buttons slot="start">
-          <ion-button (click)="back()">
-              <ion-icon name='arrow-back'></ion-icon>
-          </ion-button>
-      </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Create-place</ion-title>
+        <ion-buttons slot="start">
+            <ion-button (click)="back()">
+                <ion-icon name='arrow-back'></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <!-- ... -->
-  * <button ion-button (click)="takePicture()">Take picture</button> *
-  <img *ngIf="pictureData" src="data:image/jpeg;base64,{{ pictureData }}" />
+
+    * <button ion-button (click)="takePicture()">Take picture</button> *
+    <img *ngIf="pictureData" src="data:image/jpeg;base64,{{ pictureData }}" />
 </ion-content>
