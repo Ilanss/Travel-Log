@@ -1,0 +1,9 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Modal Map Trip</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="map" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"></div>
+</ion-content>

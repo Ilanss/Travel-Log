@@ -8,9 +8,10 @@ import { ShowTripPageRoutingModule } from './show-trip-routing.module';
 
 import { ShowTripPage } from './show-trip.page';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { ModalMapTripPageModule } from 'src/app/modals/modal-map-trip/modal-map-trip.module';
 
 @NgModule({
-	imports: [ CommonModule, FormsModule, IonicModule, ShowTripPageRoutingModule, LeafletModule ],
+	imports: [ CommonModule, FormsModule, IonicModule, ShowTripPageRoutingModule, LeafletModule, ModalMapTripPageModule ],
 	declarations: [ ShowTripPage ]
 })
 export class ShowTripPageModule {}

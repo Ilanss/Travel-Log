@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-
-import { Trip } from '../../../models/trip';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
-import { latLng, MapOptions, tileLayer, Map } from 'leaflet';
+import { ModalController } from '@ionic/angular';
+import { latLng, tileLayer, Map } from 'leaflet';
+import { ModalMapTripPage } from 'src/app/modals/modal-map-trip/modal-map-trip.page';
 
 @Component({
 	selector: 'app-show-trip',
@@ -24,7 +22,8 @@ export class ShowTripPage implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		public http: HttpClient,
-		private geolocation: Geolocation
+		private geolocation: Geolocation,
+		private modal: ModalController
 	) {
 		this.mapOptions = {
 			layers: [ tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }) ],
@@ -73,12 +72,20 @@ export class ShowTripPage implements OnInit {
 	ngOnDestroy() {
 		this.sub.unsubscribe();
 	}
+
 	newPlace() {
 		this.router.navigateByUrl('/create-place');
 	}
 	settings() {
 		this.tripEdit = !this.tripEdit;
 	}
+	async openModalMapTrip() {
+		const modal = await this.modal.create({
+			component: ModalMapTripPage
+		});
+		modal.present();
+	}
+
 	back() {
 		this.router.navigateByUrl('/home/trip-list');
 	}

@@ -23,7 +23,11 @@ const routes: Routes = [
 		path: 'create-trip',
 		loadChildren: () => import('./create-trip/create-trip.module').then((m) => m.CreateTripPageModule),
 		canActivate: [ AuthGuard ]
-	}
+	},  {
+    path: 'modal-map-trip',
+    loadChildren: () => import('./modals/modal-map-trip/modal-map-trip.module').then( m => m.ModalMapTripPageModule)
+  }
+
 ];
 
 @NgModule({
