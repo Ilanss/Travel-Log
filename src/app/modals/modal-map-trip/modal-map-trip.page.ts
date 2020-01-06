@@ -3,7 +3,6 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-import { Trip } from '../../models/trip';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { latLng, MapOptions, tileLayer, Map } from 'leaflet';
 
@@ -15,7 +14,7 @@ import { latLng, MapOptions, tileLayer, Map } from 'leaflet';
 export class ModalMapTripPage implements OnInit {
 	// devrait être Trip
 	trips: any = [];
-	mapOptions: any;
+	mapOptions: MapOptions;
 	constructor(
 		private auth: AuthService,
 		// TODO: inject the HTTP client.
@@ -30,12 +29,7 @@ export class ModalMapTripPage implements OnInit {
 		};
 	}
 
-	ngOnInit() {
-		const url = '/api/trips';
-		this.http.get(url).subscribe((trips) => {
-			this.trips = trips;
-			console.log(`Trips loaded`, trips);
-		});
+	ngOnInit() {		
 		//geocalisation
 		this.geolocation
 			.getCurrentPosition()
@@ -48,20 +42,7 @@ export class ModalMapTripPage implements OnInit {
 			});
 	}
 
-	newTrip() {
-		this.router.navigateByUrl('/create-trip');
-	}
-	newPlace() {
-		this.router.navigateByUrl('/create-place');
-	}
-
 	onMapReady(map: Map) {
 		setTimeout(() => map.invalidateSize(), 0);
-	}
-
-	showTrip(tripId) {
-		this.router.navigateByUrl('/home/show-trip');
-		console.log('show my trip');
-		console.log(tripId);
 	}
 }
