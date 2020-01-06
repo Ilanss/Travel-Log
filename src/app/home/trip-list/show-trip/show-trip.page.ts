@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { ModalController } from '@ionic/angular';
-import { latLng, tileLayer } from 'leaflet';
+import { latLng, tileLayer, Map } from 'leaflet';
 import { ModalMapTripPage } from 'src/app/modals/modal-map-trip/modal-map-trip.page';
 
 @Component({
@@ -14,7 +14,7 @@ import { ModalMapTripPage } from 'src/app/modals/modal-map-trip/modal-map-trip.p
 export class ShowTripPage implements OnInit {
 	id: number;
 	private sub: any;
-	trip: object;
+	trip: any;
 	places: any;
 	mapOptions: any;
 	constructor(
@@ -32,6 +32,43 @@ export class ShowTripPage implements OnInit {
 	}
 
 	ngOnInit() {
+		//get id from url params
+		this.sub = this.route.params.subscribe((params) => {
+			this.id = params['id']; // (+) converts string 'id' to a number
+			console.log(this.id);
+			// In a real app: dispatch action to load the details here.
+		});
+		//API call to retrive trip data
+		const tripUrl = '/api/trips/' + this.id;
+		this.http.get(tripUrl).subscribe((trip) => {
+			this.trip = trip;
+			console.log(`Trip info loaded`, trip);
+		});
+		//API call to retrive place data -- BUG
+		const placesUrl = '/api/places/?trip=' + this.id;
+		this.http.get(placesUrl).subscribe((places) => {
+			this.places = places;
+			console.log(`Places info loaded`, places);
+		});
+		//geocalisation call for user position data
+		this.geolocation
+			.getCurrentPosition()
+			.then((position: Geoposition) => {
+				const coords = position.coords;
+				console.log(`User is at ${coords.longitude}, ${coords.latitude}`);
+			})
+			.catch((err) => {
+				console.warn(`Could not retrieve user position because: ${err.message}`);
+			});
+	}
+	showMap(mapId) {
+		//show modal with map
+	}
+	onMapReady(map: Map) {
+		setTimeout(() => map.invalidateSize(), 0);
+	}
+	ngOnDestroy() {
+		this.sub.unsubscribe();
 	}
 	
 	newPlace() {
