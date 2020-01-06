@@ -23,7 +23,6 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-    <h3>Description</h3>
     <p>{{trip?.description}}</p>
     <h3>Places</h3>
     <ion-list *ngFor='let place of places'>
@@ -31,8 +30,7 @@
             <ion-label>
                 {{place?.name}}
             </ion-label>
-            <div class="map" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"></div>
-            <ion-icon name="map" slot="end"></ion-icon>
+            <ion-icon name="map" slot="end" (click)="openModalMapTrip()"></ion-icon>
         </ion-item>
     </ion-list>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
