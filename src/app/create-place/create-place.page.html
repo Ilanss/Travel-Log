@@ -11,6 +11,28 @@
 
 <ion-content padding>
 
-    * <button ion-button (click)="takePicture()">Take picture</button> *
-    <img *ngIf="pictureData" src="data:image/jpeg;base64,{{ pictureData }}" />
+    <ion-button (click)='takePicture()'>Take picture</ion-button>
+    <img *ngIf='picture' [src]='picture.url' />
+    <form>
+        <ion-item>
+            <ion-label position="stacked">Place Name <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input required type="text" [(ngModel)]="placeName" name="placeName" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="stacked">Description <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input required type="text" [(ngModel)]="placeDescription" name="placeDescription" required></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">GeoJsonPoint <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input required type="text" [(ngModel)]="placeLocation" name="placeLocation" required></ion-input>
+        </ion-item>
+
+        <ion-button type="submit">Submit</ion-button>
+    </form>
+
+    <img *ngIf="pictureData" src="data:image/jpeg;base64,{{ picture.url }}" />
 </ion-content>

@@ -2,14 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { QimgImage } from '../models/qimg-image';
+import { PictureService } from '../services/picture/picture.service';
+
 @Component({
 	selector: 'app-create-place',
 	templateUrl: './create-place.page.html',
 	styleUrls: [ './create-place.page.scss' ]
 })
 export class CreatePlacePage implements OnInit {
+	placeName: string;
+	placeDescription: string;
+	placeLocation: string;
 	pictureData: string;
-	constructor(private router: Router, private camera: Camera, private location: Location) {}
+	picture: QimgImage;
+	constructor(private router: Router, private camera: Camera, private location: Location,private pictureService: PictureService) {}
 	takePicture() {
 		const options: CameraOptions = {
 			quality: 100,
@@ -17,14 +24,12 @@ export class CreatePlacePage implements OnInit {
 			encodingType: this.camera.EncodingType.JPEG,
 			mediaType: this.camera.MediaType.PICTURE
 		};
-		this.camera
-			.getPicture(options)
-			.then((pictureData) => {
-				this.pictureData = pictureData;
-			})
-			.catch((err) => {
-				console.warn(`Could not take picture because: ${err.message}`);
-			});
+		this.pictureService.takeAndUploadPicture().subscribe(picture => {
+			this.picture = picture;
+			console.log(this.picture.url)
+		  }, err => {
+			console.warn('Could not take picture', err);
+		  });
 	}
 	ngOnInit() {}
 	back() {
