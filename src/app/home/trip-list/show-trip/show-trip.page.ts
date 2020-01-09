@@ -76,6 +76,7 @@ export class ShowTripPage implements OnInit {
 	newPlace() {
 		this.router.navigateByUrl('/create-place');
 	}
+	delatePlace() {}
 	settings() {
 		this.tripEdit = !this.tripEdit;
 	}
