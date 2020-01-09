@@ -3,7 +3,6 @@
 [![maquette](https://imagizer.imageshack.com/img921/2264/JWCBfV.png "maquette")](https://imagizer.imageshack.com/img921/2264/JWCBfV.png "maquette")
 
 
-# Evaluation
 ## Features
 
 A user must be able to register and/or log in (depending on the API's capabilities).
@@ -21,6 +20,19 @@ Pictures taken with the phone's camera (works only on physical devices). You are
 There must be a map showing geolocated resources (with more than one item on the same map).
 
 There must be a resource list with filters or search parameters.
+
+### APP Progress
+|Task | Progressbar | Todo/Tofix |
+|--|--|--|
+| A user must be able to register and/or log in |🔵⚪️⚪️⚪️⚪️||
+| A user must be able to manage the main resources of the API's  |⚪️⚪️⚪️⚪️⚪️||
+| A user must be able to create new instances of all the main resources of the domain model |⚪️⚪️⚪️⚪️⚪️||
+| A user must be able to modify at least one of the resources of the domain model |⚪️⚪️⚪️⚪️⚪️||
+| A user must be able to delete at least one of the resources of the domain model (e.g. delete a Place in the Travel |⚪️⚪️⚪️⚪️⚪️||
+|Geolocation of the user |⚪️⚪️⚪️⚪️⚪️||
+|Travel on map of the user |⚪️⚪️⚪️⚪️⚪️||
+|Take picture and publish |⚪️⚪️⚪️⚪️⚪️||
+
 ## Implementation
 
 The app must follow Angular and Ionic best practices.
