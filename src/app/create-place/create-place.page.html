@@ -13,11 +13,11 @@
 
     <ion-button (click)='takePicture()'>Take picture</ion-button>
     <img *ngIf='picture' [src]='picture.url' />
-    <form>
+    <form #placeForm="ngForm" (submit)="onSubmit(placeForm)">
         <ion-item>
             <ion-label position="stacked">Place Name <ion-text color="danger">*</ion-text>
             </ion-label>
-            <ion-input required type="text" [(ngModel)]="placeName" name="placeName" required></ion-input>
+            <ion-input #placeName="ngModel" required type="text" [(ngModel)]="placeName" name="place.name" required></ion-input>
         </ion-item>
 
         <ion-item>
