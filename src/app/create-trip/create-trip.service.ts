@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { RegisterRequest } from '../models/register-request';
+import { TripRequest } from '../models/trip-request';
 
 @Injectable({ providedIn: 'root' })
-export class RegisterService {
+export class CreateTripService {
     constructor(private http: HttpClient) { }
 
-    register(registerRequest: RegisterRequest) {
+    create(tripRequest: TripRequest) {
         const registerUrl = `/api/users`;
-        return this.http.post(registerUrl, registerRequest)
+        return this.http.post(registerUrl, tripRequest)
 
     }
 }
