@@ -6,7 +6,8 @@ import { QimgImage } from '../models/qimg-image';
 import { PictureService } from '../services/picture/picture.service';
 import { NgForm } from '@angular/forms';
 import { PlaceRequest } from '../models/place-request';
-import {createPlaceService} from './create-place.service';
+import {CreatePlaceService} from './create-place.service';
+import {first} from "rxjs/operators";
 
 @Component({
 	selector: 'app-create-place',
@@ -17,7 +18,18 @@ export class CreatePlacePage implements OnInit {
 	dataPlace: PlaceRequest;
 	pictureData: string;
 	picture: QimgImage;
-	constructor(private createPlaceService: createPlaceService,private router: Router, private camera: Camera, private location: Location, private pictureService: PictureService) { }
+	placeRequest: PlaceRequest;
+	placeError: boolean;
+
+	constructor(
+		private createPlaceService: CreatePlaceService,
+		private router: Router,
+		private camera: Camera,
+		private location: Location,
+		private pictureService: PictureService
+	) {
+		this.placeRequest = new PlaceRequest();
+	}
 	takePicture() {
 		const options: CameraOptions = {
 			quality: 100,
@@ -37,8 +49,24 @@ export class CreatePlacePage implements OnInit {
 		if (form.invalid) {
 			return;
 		}
+
+		this.placeError = false;
+
 		// Perform the authentication request to the API.
-		
+
+		this.createPlaceService.create(this.placeRequest)
+			.pipe(first())
+			.subscribe({
+				next: () => {
+					this.router.navigateByUrl('/home');
+				},
+				error: err => {
+					console.log(this.placeRequest)
+					this.placeError = true;
+					console.warn(`Place creation failed: ${err.message}`);
+				}
+			});
+
 	}
 	ngOnInit() { }
 	back() {

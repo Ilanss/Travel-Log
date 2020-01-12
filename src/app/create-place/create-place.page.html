@@ -15,20 +15,20 @@
     <img *ngIf='picture' [src]='picture.url' />
     <form #placeForm="ngForm" (submit)="onSubmit(placeForm)">
         <ion-item>
-            <ion-label position="stacked">Place Name <ion-text color="danger">*</ion-text>
-            </ion-label>
-            <ion-input #placeName="ngModel" required type="text" [(ngModel)]="placeName" name="place.name" required></ion-input>
+            <ion-label position="stacked">Place Name<ion-text color="danger">*</ion-text></ion-label>
+            <ion-input #placeName="ngModel" required="true" type="text" [(ngModel)]="placeRequest.name" name="name"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label position="stacked">Description <ion-text color="danger">*</ion-text>
             </ion-label>
-            <ion-input required type="text" [(ngModel)]="placeDescription" name="placeDescription" required></ion-input>
+            <ion-input required="true" type="text" [(ngModel)]="placeRequest.description" name="description" ></ion-input>
         </ion-item>
+
         <ion-item>
             <ion-label position="stacked">GeoJsonPoint <ion-text color="danger">*</ion-text>
             </ion-label>
-            <ion-input required type="text" [(ngModel)]="placeLocation" name="placeLocation" required></ion-input>
+            <ion-input required="true" type="text" [(ngModel)]="placeRequest.location" name="placeLocation" ></ion-input>
         </ion-item>
 
         <ion-button type="submit">Submit</ion-button>

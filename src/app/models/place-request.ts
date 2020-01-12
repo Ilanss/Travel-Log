@@ -1,5 +1,5 @@
 export class PlaceRequest {
-    placeName: string;
-	placeDescription: string;
-	placeLocation: string;
+    name: string;
+	description: string;
+	location: string;
 }
