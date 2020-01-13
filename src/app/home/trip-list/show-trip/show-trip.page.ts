@@ -1,10 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { ModalController } from '@ionic/angular';
 import { latLng, tileLayer, Map } from 'leaflet';
 import { ModalMapTripPage } from 'src/app/modals/modal-map-trip/modal-map-trip.page';
+
+import { DelateTripService } from './delate-trip.service';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
 	selector: 'app-show-trip',
@@ -18,12 +23,16 @@ export class ShowTripPage implements OnInit {
 	places: any;
 	mapOptions: any;
 	tripEdit: boolean;
+
 	constructor(
+		private auth: AuthService,
 		private router: Router,
 		private route: ActivatedRoute,
 		public http: HttpClient,
 		private geolocation: Geolocation,
-		private modal: ModalController
+		private modal: ModalController,
+		public alertController: AlertController,
+		private delateTripService: DelateTripService
 	) {
 		this.mapOptions = {
 			layers: [ tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }) ],
@@ -76,7 +85,6 @@ export class ShowTripPage implements OnInit {
 	newPlace() {
 		this.router.navigateByUrl('/create-place');
 	}
-	delatePlace() {}
 	settings() {
 		this.tripEdit = !this.tripEdit;
 	}
@@ -86,7 +94,40 @@ export class ShowTripPage implements OnInit {
 		});
 		modal.present();
 	}
+	async deleteTrip() {
+		const alert = await this.alertController.create({
+			header: 'Alert',
+			subHeader: 'To delate or not to delate?',
+			message: 'You really want to delate this trip?',
+			buttons: [
+				{
+					text: 'Cancel',
+					role: 'cancel',
+					cssClass: 'secondary',
+					handler: () => {
+						console.log('Confirm Cancel');
+					}
+				},
+				{
+					text: 'Delete',
 
+					handler: () => {
+						this.delateTripService.delete(this.id).subscribe({
+							next: () => {
+								this.router.navigateByUrl('/home/trip-list');
+							},
+							error: (err) => {
+								console.log(this.id);
+								console.warn(`error: ${err.message}`);
+							}
+						});
+						console.log('Confirm Delate');
+					}
+				}
+			]
+		});
+		await alert.present();
+	}
 	back() {
 		this.router.navigateByUrl('/home/trip-list');
 	}

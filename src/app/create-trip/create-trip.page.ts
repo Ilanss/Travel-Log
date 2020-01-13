@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import { AuthService } from '../auth/auth.service';
-import { CreateTripService } from './create-trip.service'
+import { CreateTripService } from './create-trip.service';
 import { TripRequest } from '../models/trip-request';
-import {first} from "rxjs/operators";
+import { first } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-create-trip',
@@ -14,7 +14,6 @@ import {first} from "rxjs/operators";
 	styleUrls: [ './create-trip.page.scss' ]
 })
 export class CreateTripPage implements OnInit {
-
 	tripRequest: TripRequest;
 
 	tripError: boolean;
@@ -23,8 +22,8 @@ export class CreateTripPage implements OnInit {
 		private auth: AuthService,
 		public http: HttpClient,
 		private router: Router,
-		private createTripService: CreateTripService)
-	{
+		private createTripService: CreateTripService
+	) {
 		this.tripRequest = new TripRequest();
 	}
 
@@ -34,7 +33,6 @@ export class CreateTripPage implements OnInit {
 	}
 
 	onSubmit(form: NgForm) {
-
 		// Do not do anything if the form is invalid.
 		if (form.invalid) {
 			return;
@@ -44,18 +42,15 @@ export class CreateTripPage implements OnInit {
 		this.tripError = false;
 
 		// Perform the authentication request to the API.
-		this.createTripService.create(this.tripRequest)
-			.pipe(first())
-			.subscribe({
-				next: () => {
-					this.router.navigateByUrl('/home/trip-list');
-				},
-				error: err => {
-					console.log(this.tripRequest)
-					this.tripError = true;
-					console.warn(`Authentication failed: ${err.message}`);
-				}
-			});
+		this.createTripService.create(this.tripRequest).pipe(first()).subscribe({
+			next: () => {
+				this.router.navigateByUrl('/home/trip-list');
+			},
+			error: (err) => {
+				console.log(this.tripRequest);
+				this.tripError = true;
+				console.warn(`Authentication failed: ${err.message}`);
+			}
+		});
 	}
-
 }
