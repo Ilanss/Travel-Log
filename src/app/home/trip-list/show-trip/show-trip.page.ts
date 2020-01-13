@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,8 +9,12 @@ import { ModalController } from '@ionic/angular';
 import { latLng, tileLayer, Map } from 'leaflet';
 import { ModalMapTripPage } from 'src/app/modals/modal-map-trip/modal-map-trip.page';
 
-import { DelateTripService } from './delate-trip.service';
+import { DeleteTripService } from './delete-trip.service';
+import { EditTripService } from './edit-trip.service';
 import { AuthService } from '../../../auth/auth.service';
+
+import { first } from 'rxjs/operators';
+import { TripRequest } from '../../../models/trip-request';
 
 @Component({
 	selector: 'app-show-trip',
@@ -23,7 +28,8 @@ export class ShowTripPage implements OnInit {
 	places: any;
 	mapOptions: any;
 	tripEdit: boolean;
-
+	tripRequest: TripRequest;
+	tripError: boolean;
 	constructor(
 		private auth: AuthService,
 		private router: Router,
@@ -32,7 +38,8 @@ export class ShowTripPage implements OnInit {
 		private geolocation: Geolocation,
 		private modal: ModalController,
 		public alertController: AlertController,
-		private delateTripService: DelateTripService
+		private deleteTripService: DeleteTripService,
+		private editTripService: EditTripService
 	) {
 		this.mapOptions = {
 			layers: [ tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }) ],
@@ -40,6 +47,7 @@ export class ShowTripPage implements OnInit {
 			center: latLng(46.778186, 6.641524)
 		};
 		this.tripEdit = true;
+		this.tripRequest = new TripRequest();
 	}
 
 	ngOnInit() {
@@ -88,6 +96,7 @@ export class ShowTripPage implements OnInit {
 	settings() {
 		this.tripEdit = !this.tripEdit;
 	}
+	editForm() {}
 	async openModalMapTrip() {
 		const modal = await this.modal.create({
 			component: ModalMapTripPage
@@ -112,7 +121,7 @@ export class ShowTripPage implements OnInit {
 					text: 'Delete',
 
 					handler: () => {
-						this.delateTripService.delete(this.id).subscribe({
+						this.deleteTripService.delete(this.id).subscribe({
 							next: () => {
 								this.router.navigateByUrl('/home/trip-list');
 							},
@@ -127,6 +136,27 @@ export class ShowTripPage implements OnInit {
 			]
 		});
 		await alert.present();
+	}
+	onSubmit(form: NgForm) {
+		// Do not do anything if the form is invalid.
+		if (form.invalid) {
+			return;
+		}
+
+		// Hide any previous error.
+		this.tripError = false;
+
+		// Perform the authentication request to the API.
+		this.editTripService.edit(this.id, this.tripRequest).pipe(first()).subscribe({
+			next: () => {
+				this.router.navigateByUrl('/home/trip-list');
+			},
+			error: (err) => {
+				console.log(this.tripRequest);
+				this.tripError = true;
+				console.warn(`Trip edition failed: ${err.message}`);
+			}
+		});
 	}
 	back() {
 		this.router.navigateByUrl('/home/trip-list');
