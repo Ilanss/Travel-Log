@@ -80,6 +80,7 @@ export class ShowTripPage implements OnInit {
 				console.warn(`Could not retrieve user position because: ${err.message}`);
 			});
 	}
+
 	showMap(mapId) {
 		//show modal with map
 	}

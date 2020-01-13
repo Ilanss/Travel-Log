@@ -13,7 +13,7 @@
         </ion-buttons>
         <ng-template #checkmark>
             <ion-buttons slot="end">
-                <ion-button (click)="settings()">
+                <ion-button (click)="settings()" (click)="onSubmit(editForm)">
                     <ion-icon name='checkmark'></ion-icon>
                 </ion-button>
             </ion-buttons>
@@ -27,7 +27,7 @@
     <p *ngIf="tripEdit; else editDescription">{{trip?.description}}</p>
     <ng-template #editDescription>
 
-        <form #tripForm="ngForm" (submit)="onSubmit(editForm)">
+        <form #tripForm="ngForm">
             <h3>Title</h3>
             <!-- Title input -->
             <ion-item>
@@ -38,10 +38,8 @@
             <ion-item>
                 <ion-input inputmode="text" #description="ngModel" [(ngModel)]=trip.description required="true" name="description" [(ngModel)]="tripRequest.description"></ion-input>
             </ion-item>
-
-            <!-- Submit button -->
-            <ion-button type="submit" expand="block" [disabled]="tripForm.invalid">Edit me</ion-button>
         </form>
+
     </ng-template>
     <h3>Places</h3>
     <ion-list *ngFor='let place of places'>
