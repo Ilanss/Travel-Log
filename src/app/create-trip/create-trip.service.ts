@@ -8,7 +8,7 @@ export class CreateTripService {
     constructor(private http: HttpClient) { }
 
     create(tripRequest: TripRequest) {
-        const registerUrl = `/api/users`;
+        const registerUrl = `/api/trips`;
         return this.http.post(registerUrl, tripRequest)
 
     }

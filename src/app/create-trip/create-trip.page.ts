@@ -23,7 +23,8 @@ export class CreateTripPage implements OnInit {
 		private auth: AuthService,
 		public http: HttpClient,
 		private router: Router,
-		private createTripService: CreateTripService)
+		private createTripService: CreateTripService
+	)
 	{
 		this.tripRequest = new TripRequest();
 	}
@@ -53,7 +54,7 @@ export class CreateTripPage implements OnInit {
 				error: err => {
 					console.log(this.tripRequest)
 					this.tripError = true;
-					console.warn(`Authentication failed: ${err.message}`);
+					console.warn(`Trip creation failed: ${err.message}`);
 				}
 			});
 	}
