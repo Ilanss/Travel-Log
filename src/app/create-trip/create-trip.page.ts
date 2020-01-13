@@ -23,8 +23,7 @@ export class CreateTripPage implements OnInit {
 		public http: HttpClient,
 		private router: Router,
 		private createTripService: CreateTripService
-	)
-	{
+	) {
 		this.tripRequest = new TripRequest();
 	}
 
@@ -43,7 +42,6 @@ export class CreateTripPage implements OnInit {
 		this.tripError = false;
 
 		// Perform the authentication request to the API.
-<<<<<<< HEAD
 		this.createTripService.create(this.tripRequest).pipe(first()).subscribe({
 			next: () => {
 				this.router.navigateByUrl('/home/trip-list');
@@ -51,22 +49,8 @@ export class CreateTripPage implements OnInit {
 			error: (err) => {
 				console.log(this.tripRequest);
 				this.tripError = true;
-				console.warn(`Authentication failed: ${err.message}`);
+				console.warn(`Trip creation failed: ${err.message}`);
 			}
 		});
-=======
-		this.createTripService.create(this.tripRequest)
-			.pipe(first())
-			.subscribe({
-				next: () => {
-					this.router.navigateByUrl('/home/trip-list');
-				},
-				error: err => {
-					console.log(this.tripRequest)
-					this.tripError = true;
-					console.warn(`Trip creation failed: ${err.message}`);
-				}
-			});
->>>>>>> be4d4e0730addc949ab9eaca6d464237cf393f36
 	}
 }
