@@ -38,6 +38,8 @@
             <ion-item>
                 <ion-input inputmode="text" #description="ngModel" [(ngModel)]=trip.description required="true" name="description" [(ngModel)]="tripRequest.description"></ion-input>
             </ion-item>
+            <!-- Error message displayed if the registration failed -->
+            <ion-text color='danger' *ngIf="tripError">Title or description is invalid.</ion-text>
         </form>
 
     </ng-template>

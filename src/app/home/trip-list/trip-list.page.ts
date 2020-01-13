@@ -19,8 +19,7 @@ export class TripListPage implements OnInit {
 		public http: HttpClient,
 		private geolocation: Geolocation,
 		private router: Router
-	) {
-	}
+	) {}
 
 	ngOnInit() {
 		const url = '/api/trips';

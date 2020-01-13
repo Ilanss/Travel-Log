@@ -28,6 +28,7 @@ export class ShowTripPage implements OnInit {
 	places: any;
 	mapOptions: any;
 	tripEdit: boolean;
+	formInvalid: boolean;
 	tripRequest: TripRequest;
 	tripError: boolean;
 	constructor(
@@ -47,6 +48,7 @@ export class ShowTripPage implements OnInit {
 			center: latLng(46.778186, 6.641524)
 		};
 		this.tripEdit = true;
+		this.formInvalid = false;
 		this.tripRequest = new TripRequest();
 	}
 
@@ -149,9 +151,7 @@ export class ShowTripPage implements OnInit {
 
 		// Perform the authentication request to the API.
 		this.editTripService.edit(this.id, this.tripRequest).pipe(first()).subscribe({
-			next: () => {
-				this.router.navigateByUrl('/home/trip-list');
-			},
+			next: () => {},
 			error: (err) => {
 				console.log(this.tripRequest);
 				this.tripError = true;
