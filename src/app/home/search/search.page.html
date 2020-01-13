@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Search</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Search</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-searchbar [(ngModel)]="searchTerm" placeholder="Search" showCancelButton="always" type="text" ionChange=find() debounce="200" mode="ios" (ionInput)=searchTermChange()></ion-searchbar>
 </ion-content>

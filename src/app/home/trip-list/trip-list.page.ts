@@ -13,6 +13,7 @@ export class TripListPage implements OnInit {
 	// devrait être Trip
 	trips: any = [];
 	mapOptions: any;
+	userId: any;
 	constructor(
 		private auth: AuthService,
 		// TODO: inject the HTTP client.
@@ -22,11 +23,17 @@ export class TripListPage implements OnInit {
 	) {}
 
 	ngOnInit() {
-		const url = '/api/trips';
-		this.http.get(url).subscribe((trips) => {
-			this.trips = trips;
-			console.log(`Trips loaded`, trips);
+		// Execute with the observer object
+		this.auth.getUser().subscribe((user) => {
+			this.userId = user.id;
+			//console.log('userid', this.userId);
+			const url = '/api/trips/?user=' + this.userId;
+			this.http.get(url).subscribe((trips) => {
+				this.trips = trips;
+				console.log(`Trips loaded`, trips);
+			});
 		});
+
 		//geocalisation
 		// this.geolocation
 		// 	.getCurrentPosition()
