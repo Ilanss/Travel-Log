@@ -9,7 +9,9 @@ import { WebsocketService } from 'src/app/services/websocket/websocket.service';
 	styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage {
-	message: string;
+	message: any;
+	placesCount: number;
+	tripsCount: number;
 	constructor(
 		// TODO: inject the authentication provider.
 		private auth: AuthService,
@@ -18,10 +20,14 @@ export class ProfilePage {
 	) {
 		this.wsService
 		.listen()
-		.subscribe(message => {
-			console.log(this.message);
-			// Do something when a message is received
-		});
+		
+		.subscribe((message: any) => {
+			this.message = JSON.parse(message)
+			this.placesCount = this.message.stats.placesCount
+			this.tripsCount = this.message.stats.tripsCount
+			console.log(this.message.stats)
+			//console.log(JSON.parse(message))
+		  });
 	}
 
 	// TODO: add a method to log out.
@@ -29,10 +35,5 @@ export class ProfilePage {
 		this.auth.logOut();
 		this.router.navigateByUrl('/login');
 	}
-
-	sendMessage() {
-		this.wsService.send({ msg: this.message });
-		console.log("send this:"+this.message);
-	  }
 
 }
