@@ -12,7 +12,6 @@ import { QimgImage } from '../../models/qimg-image';
  */
 @Injectable({ providedIn: 'root' })
 export class PictureService {
-	uploadPicture: any;
 	constructor(private camera: Camera, private http: HttpClient) {
 		console.log('Hello PictureService Provider');
 		console.log('@@@ http client', !!this.http);
