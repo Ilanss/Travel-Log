@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
 import { PlaceRequest } from '../../../../models/place-request';
 import { CreatePlaceService } from './create-place.service';
 import { first } from "rxjs/operators";
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 
 @Component({
 	selector: 'app-create-place',
@@ -41,12 +41,12 @@ export class CreatePlacePage implements OnInit {
 			encodingType: this.camera.EncodingType.JPEG,
 			mediaType: this.camera.MediaType.PICTURE
 		};
-		/*this.pictureService.takeAndUploadPicture().subscribe(picture => {
+		this.pictureService.takeAndUploadPicture().subscribe(picture => {
 			this.picture = picture;
 			console.log(this.picture.url)
 		}, err => {
 			console.warn('Could not take picture', err);
-		});*/
+		});
 	}
 	onSubmit(form: NgForm) {
 		// Do not do anything if the form is invalid.
@@ -87,7 +87,7 @@ export class CreatePlacePage implements OnInit {
 		     this.placeRequest.location = {
 				type: "Point",
 				coordinates: [coords.latitude, coords.longitude]
-		     };
+				   };
 		     console.log(`User is at ${coords.longitude}, ${coords.latitude}`);
 		   }).catch(err => {
 		     console.warn(`Could not retrieve user position because: ${err.message}`);
