@@ -32,8 +32,8 @@ There must be a resource list with filters or search parameters.
 |Geolocation of the user |🔵🔵⚪️⚪️⚪️||
 |Travel on map of the user |⚪️⚪️⚪️⚪️⚪️||
 |Take picture and publish |🔵🔵⚪️⚪️⚪️||
-|Search User/Trip |⚪️⚪️⚪️⚪️⚪️||
-|Websocket |⚪️⚪️⚪️⚪️⚪️||
+|Search User/Trip |🔵🔵🔵🔵⚪️||
+|Websocket |🔵⚪️⚪️⚪️⚪️||
 
 ## Implementation
 

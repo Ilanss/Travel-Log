@@ -49,13 +49,17 @@
             <ion-label>
                 {{place?.name}}
             </ion-label>
-            <ion-icon name="map" slot="end"></ion-icon>
+            <ion-icon name="map" slot="end" (click)="openModalMapTrip()" *ngIf="tripEdit; else editPlace"></ion-icon>
+            <ng-template #editPlace>
+                <ion-icon name="trash" slot="end" (click)="deletePlace(place.id)"></ion-icon>
+            </ng-template>
         </ion-item>
+
     </ion-list>
     <ng-template #editHere>
         <ion-input [placeholder]=trip?.title></ion-input>
     </ng-template>
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="canEdit;">
         <ion-fab-button (click)="newPlace()" *ngIf="tripEdit; else trashButton">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>

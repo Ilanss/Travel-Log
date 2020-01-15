@@ -4,18 +4,20 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
     <ion-searchbar placeholder="Search" showCancelButton="always" type="text" debounce="200" mode="ios" (ionInput)="searchTermChange($event)"></ion-searchbar>
-    <h3>All Trips</h3>
+    <h3 id="trips" *ngIf='trips.length > 1'>All Trips</h3>
     <ion-list>
         <ion-item *ngFor='let trip of trips' [routerLink]="['/home/show-trip', trip.id]" id={{trip.id}}>
             <ion-label>{{trip.title}}</ion-label>
             <p>{{trip.description | slice:0:15}}</p>
         </ion-item>
     </ion-list>
-    <h3>All Places</h3>
-    <ion-item *ngFor='let place of places' id={{place.id}}>
-        <ion-label>{{place.name}}</ion-label>
-        <p>{{place.description | slice:0:15}}</p>
-    </ion-item>
+    <h3 id="places" *ngIf='places.length > 1'>All Places</h3>
+    <ion-list>
+        <ion-item *ngFor='let place of places' id={{place.id}}>
+            <ion-label>{{place.name}}</ion-label>
+            <p>{{place.description | slice:0:15}}</p>
+        </ion-item>
+    </ion-list>
 </ion-content>
