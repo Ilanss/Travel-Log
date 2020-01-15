@@ -10,6 +10,7 @@ import { latLng, tileLayer, Map } from 'leaflet';
 import { ModalMapTripPage } from 'src/app/modals/modal-map-trip/modal-map-trip.page';
 
 import { DeleteTripService } from './delete-trip.service';
+import { DeletePlaceService } from './delete-place.service';
 import { EditTripService } from './edit-trip.service';
 import { AuthService } from '../../../auth/auth.service';
 
@@ -42,6 +43,7 @@ export class ShowTripPage implements OnInit {
 		private modal: ModalController,
 		public alertController: AlertController,
 		private deleteTripService: DeleteTripService,
+		private deletePlaceService: DeletePlaceService,
 		private editTripService: EditTripService
 	) {
 		this.mapOptions = {
@@ -108,8 +110,37 @@ export class ShowTripPage implements OnInit {
 	newPlace() {
 		this.router.navigateByUrl('/home/show-trip/' + this.id + '/create-place');
 	}
-	delatePlace() {
-		//delate a place function
+	async deletePlace(placeId) {
+		const alert = await this.alertController.create({
+			header: 'Alert',
+			subHeader: 'To delete or not to delete?',
+			message: 'You really want to delete this place?',
+			buttons: [
+				{
+					text: 'Cancel',
+					role: 'cancel',
+					cssClass: 'secondary',
+					handler: () => {
+						console.log('Confirm Cancel');
+					}
+				},
+				{
+					text: 'Delete',
+
+					handler: () => {
+						this.deletePlaceService.delete(placeId).subscribe({
+							next: () => {},
+							error: (err) => {
+								console.log(this.id);
+								console.warn(`error: ${err.message}`);
+							}
+						});
+						console.log('Confirm Delate');
+					}
+				}
+			]
+		});
+		await alert.present();
 	}
 	settings() {
 		if (this.canEdit == true) {
