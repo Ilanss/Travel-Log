@@ -12,6 +12,7 @@ import { QimgImage } from '../../models/qimg-image';
  */
 @Injectable({ providedIn: 'root' })
 export class PictureService {
+	uploadPicture: any;
 	constructor(private camera: Camera, private http: HttpClient) {
 		console.log('Hello PictureService Provider');
 		console.log('@@@ http client', !!this.http);
@@ -75,17 +76,17 @@ export class PictureService {
    * Returns an observable that will emit the created QimgImage object.
    * An error may be emitted instead if the upload fails.
    */
-	/*private uploadPicture(pictureData: string): Observable<QimgImage> {
+	private uploadPicture(pictureData: string): Observable<QimgImage> {
 		const requestBody = {
 			data: pictureData
 		};
 
 		const requestOptions = {
 			headers: {
-				//Authorization: `Bearer ${environment.qimgSecret}`
+				Authorization: `Bearer ${environment.qimgSecret}`
 			}
 		};
 
-		//return this.http.post<QimgImage>(`${environment.qimgUrl}/images`, requestBody, requestOptions);
-	} */
+		return this.http.post<QimgImage>(`${environment.qimgUrl}/images`, requestBody, requestOptions);
+	}
 }

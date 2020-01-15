@@ -5,11 +5,17 @@
 </ion-header>
 
 <ion-content>
-    <ion-searchbar placeholder="Search" showCancelButton="always" type="text" ionChange=find() debounce="200" mode="ios" (ionInput)=searchTermChange()></ion-searchbar>
+    <ion-searchbar placeholder="Search" showCancelButton="always" type="text" debounce="200" mode="ios" (ionInput)="searchTermChange($event)"></ion-searchbar>
+    <h3>All Trips</h3>
     <ion-list>
-        <ion-item *ngFor='let trip of trips' [routerLink]="['/home/show-trip', trip.id] ">
+        <ion-item *ngFor='let trip of trips' [routerLink]="['/home/show-trip', trip.id]" id={{trip.id}}>
             <ion-label>{{trip.title}}</ion-label>
             <p>{{trip.description | slice:0:15}}</p>
         </ion-item>
     </ion-list>
+    <h3>All Places</h3>
+    <ion-item *ngFor='let place of places' id={{place.id}}>
+        <ion-label>{{place.name}}</ion-label>
+        <p>{{place.description | slice:0:15}}</p>
+    </ion-item>
 </ion-content>
