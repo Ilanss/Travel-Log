@@ -24,15 +24,16 @@ There must be a resource list with filters or search parameters.
 ### APP Progress
 |Task | Progressbar | Todo/Tofix |
 |--|--|--|
-| A user must be able to register and/or log in |🔵⚪️⚪️⚪️⚪️||
-| A user must be able to manage the main resources of the API's  |⚪️⚪️⚪️⚪️⚪️||
-| A user must be able to create new instances of all the main resources of the domain model |⚪️⚪️⚪️⚪️⚪️||
-| A user must be able to modify at least one of the resources of the domain model |⚪️⚪️⚪️⚪️⚪️||
-| A user must be able to delete at least one of the resources of the domain model (e.g. delete a Place in the Travel |⚪️⚪️⚪️⚪️⚪️||
-|Geolocation of the user |⚪️⚪️⚪️⚪️⚪️||
+| A user must be able to register and/or log in |🔵🔵🔵🔵🔵||
+| A user must be able to manage the main resources of the API's  |🔵🔵🔵🔵🔵||
+| A user must be able to create new instances of all the main resources of the domain model |🔵🔵⚪️⚪️⚪️||
+| A user must be able to modify at least one of the resources of the domain model |🔵🔵⚪️⚪️⚪️||
+| A user must be able to delete at least one of the resources of the domain model (e.g. delete a Place in the Travel |🔵🔵⚪️⚪️⚪️||
+|Geolocation of the user |🔵🔵⚪️⚪️⚪️||
 |Travel on map of the user |⚪️⚪️⚪️⚪️⚪️||
 |Take picture and publish |🔵🔵⚪️⚪️⚪️||
 |Search User/Trip |⚪️⚪️⚪️⚪️⚪️||
+|Websocket |⚪️⚪️⚪️⚪️⚪️||
 
 ## Implementation
 
