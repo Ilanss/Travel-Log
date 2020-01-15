@@ -59,7 +59,7 @@
     <ng-template #editHere>
         <ion-input [placeholder]=trip?.title></ion-input>
     </ng-template>
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="canEdit;">
         <ion-fab-button (click)="newPlace()" *ngIf="tripEdit; else trashButton">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
