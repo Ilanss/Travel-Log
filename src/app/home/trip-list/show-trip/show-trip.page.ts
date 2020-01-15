@@ -94,7 +94,7 @@ export class ShowTripPage implements OnInit {
 	}
 
 	newPlace() {
-		this.router.navigateByUrl('/create-place');
+		this.router.navigateByUrl('/home/show-trip/'+this.id+'/create-place');
 	}
 	settings() {
 		this.tripEdit = !this.tripEdit;
@@ -109,8 +109,8 @@ export class ShowTripPage implements OnInit {
 	async deleteTrip() {
 		const alert = await this.alertController.create({
 			header: 'Alert',
-			subHeader: 'To delate or not to delate?',
-			message: 'You really want to delate this trip?',
+			subHeader: 'To delete or not to delete?',
+			message: 'You really want to delete this trip?',
 			buttons: [
 				{
 					text: 'Cancel',

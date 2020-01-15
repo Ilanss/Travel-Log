@@ -11,6 +11,10 @@ const routes: Routes = [
 	{
 		path: 'show-place',
 		loadChildren: () => import('./show-place/show-place.module').then((m) => m.ShowPlacePageModule)
+	},
+	{
+		path: 'create-place',
+		loadChildren: () => import('./create-place/create-place.module').then((m) => m.CreatePlacePageModule)
 	}
 ];
 
