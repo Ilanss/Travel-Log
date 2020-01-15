@@ -19,6 +19,7 @@ export class ProfilePage {
 		this.wsService
 		.listen()
 		.subscribe(message => {
+			console.log(this.message);
 			// Do something when a message is received
 		});
 	}
@@ -31,8 +32,7 @@ export class ProfilePage {
 
 	sendMessage() {
 		this.wsService.send({ msg: this.message });
-		console.log(this.message);
+		console.log("send this:"+this.message);
 	  }
-	
 
 }
