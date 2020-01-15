@@ -13,7 +13,12 @@ export class SearchPage implements OnInit {
 	trips: any = [];
 	places: any = [];
 	searchTerm: any;
-	constructor(public http: HttpClient) {}
+	tripHidden: number;
+	placeHidden: number;
+	constructor(public http: HttpClient) {
+		this.tripHidden = 0;
+		this.placeHidden = 0;
+	}
 
 	ngOnInit() {
 		const url = '/api/trips/';
@@ -28,20 +33,38 @@ export class SearchPage implements OnInit {
 		});
 	}
 	searchTermChange(event) {
+		this.tripHidden == 0;
+		this.placeHidden == 0;
 		console.log('tipped');
 		const query = event.target.value.toLowerCase();
 		console.log(query);
+
 		requestAnimationFrame(() => {
 			this.trips.forEach((trip) => {
-				console.log(trip);
 				const shouldShowTrip = trip.title.toLowerCase().indexOf(query) > -1;
 				document.getElementById(trip.id).style.display = shouldShowTrip ? 'block' : 'none';
+				if (shouldShowTrip == false) {
+					this.tripHidden++;
+				}
+				console.log(this.tripHidden);
 			});
+
 			this.places.forEach((place) => {
-				console.log(place);
 				const shouldShowPlace = place.name.toLowerCase().indexOf(query) > -1;
 				document.getElementById(place.id).style.display = shouldShowPlace ? 'block' : 'none';
+				if (shouldShowPlace == false) {
+					this.placeHidden++;
+				}
+				console.log(this.placeHidden);
 			});
 		});
+		/*if (this.tripHidden == this.trips.length && this.placeHidden == this.places.length) {
+			document.getElementById('trips').style.display = 'none';
+			document.getElementById('places').style.display = 'none';
+		} else if (this.tripHidden == this.trips.length) {
+			document.getElementById('trips').style.display = 'none';
+		} else if (this.placeHidden == this.places.length) {
+			document.getElementById('places').style.display = 'none';
+		} */
 	}
 }

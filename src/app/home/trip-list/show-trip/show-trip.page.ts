@@ -28,9 +28,11 @@ export class ShowTripPage implements OnInit {
 	places: any;
 	mapOptions: any;
 	tripEdit: boolean;
+	canEdit: boolean;
 	formInvalid: boolean;
 	tripRequest: TripRequest;
 	tripError: boolean;
+	userId: any;
 	constructor(
 		private auth: AuthService,
 		private router: Router,
@@ -48,6 +50,7 @@ export class ShowTripPage implements OnInit {
 			center: latLng(46.778186, 6.641524)
 		};
 		this.tripEdit = true;
+		this.canEdit = true;
 		this.formInvalid = false;
 		this.tripRequest = new TripRequest();
 	}
@@ -56,13 +59,22 @@ export class ShowTripPage implements OnInit {
 		//get id from url params
 		this.sub = this.route.params.subscribe((params) => {
 			this.id = params['id']; // (+) converts string 'id' to a number
-			console.log(this.id);
+			console.log('tripid', this.id);
 			// In a real app: dispatch action to load the details here.
 		});
 		//API call to retrive trip data
 		const tripUrl = '/api/trips/' + this.id;
 		this.http.get(tripUrl).subscribe((trip) => {
 			this.trip = trip;
+			this.auth.getUser().subscribe((user) => {
+				this.userId = user.id;
+				console.log('userid', this.userId);
+				console.log(this.trip.userId);
+				if (this.userId == this.trip.userId) {
+					this.canEdit == true;
+				}
+				console.log(this.canEdit);
+			});
 			console.log(`Trip info loaded`, trip);
 		});
 		//API call to retrive place data -- BUG
@@ -94,10 +106,15 @@ export class ShowTripPage implements OnInit {
 	}
 
 	newPlace() {
-		this.router.navigateByUrl('/home/show-trip/'+this.id+'/create-place');
+		this.router.navigateByUrl('/home/show-trip/' + this.id + '/create-place');
+	}
+	delatePlace() {
+		//delate a place function
 	}
 	settings() {
-		this.tripEdit = !this.tripEdit;
+		if (this.canEdit == true) {
+			this.tripEdit = !this.tripEdit;
+		}
 	}
 	editForm() {}
 	async openModalMapTrip() {
