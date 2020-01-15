@@ -52,7 +52,7 @@ export class ShowTripPage implements OnInit {
 			center: latLng(46.778186, 6.641524)
 		};
 		this.tripEdit = true;
-		this.canEdit = true;
+		this.canEdit = false;
 		this.formInvalid = false;
 		this.tripRequest = new TripRequest();
 	}
@@ -73,7 +73,7 @@ export class ShowTripPage implements OnInit {
 				console.log('userid', this.userId);
 				console.log(this.trip.userId);
 				if (this.userId == this.trip.userId) {
-					this.canEdit == true;
+					this.canEdit = true;
 				}
 				console.log(this.canEdit);
 			});
