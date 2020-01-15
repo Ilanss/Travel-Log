@@ -64,7 +64,7 @@ export class CreatePlacePage implements OnInit {
 			.pipe(first())
 			.subscribe({
 				next: () => {
-					this.router.navigateByUrl('/home');
+					this.router.navigateByUrl('/home/show-trip/'+this.id);
 				},
 				error: err => {
 					console.log(this.placeRequest)

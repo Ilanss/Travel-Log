@@ -15,6 +15,7 @@ import { AuthService } from '../../../auth/auth.service';
 
 import { first } from 'rxjs/operators';
 import { TripRequest } from '../../../models/trip-request';
+import {forEach} from "@angular-devkit/schematics";
 
 @Component({
 	selector: 'app-show-trip',
@@ -26,6 +27,7 @@ export class ShowTripPage implements OnInit {
 	private sub: any;
 	trip: any;
 	places: any;
+	place: object;
 	mapOptions: any;
 	tripEdit: boolean;
 	formInvalid: boolean;
@@ -36,8 +38,8 @@ export class ShowTripPage implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		public http: HttpClient,
+		public modalController: ModalController,
 		private geolocation: Geolocation,
-		private modal: ModalController,
 		public alertController: AlertController,
 		private deleteTripService: DeleteTripService,
 		private editTripService: EditTripService
@@ -65,7 +67,7 @@ export class ShowTripPage implements OnInit {
 			this.trip = trip;
 			console.log(`Trip info loaded`, trip);
 		});
-		//API call to retrive place data -- BUG
+		//API call to retrieve place data -- BUG
 		const placesUrl = '/api/places/?trip=' + this.id;
 		this.http.get(placesUrl).subscribe((places) => {
 			this.places = places;
@@ -83,9 +85,22 @@ export class ShowTripPage implements OnInit {
 			});
 	}
 
-	showMap(mapId) {
+	async showMap(placeId) {
 		//show modal with map
+		const placeUrl = '/api/places/'+placeId;
+		this.http.get(placeUrl).subscribe(async (place) => {
+			this.place = place;
+
+			const modal = await this.modalController.create({
+				component: ModalMapTripPage,
+				componentProps: {
+					place : this.place,
+				}
+			});
+			return await modal.present();
+		});
 	}
+
 	onMapReady(map: Map) {
 		setTimeout(() => map.invalidateSize(), 0);
 	}
@@ -99,12 +114,8 @@ export class ShowTripPage implements OnInit {
 	settings() {
 		this.tripEdit = !this.tripEdit;
 	}
-	editForm() {}
-	async openModalMapTrip() {
-		const modal = await this.modal.create({
-			component: ModalMapTripPage
-		});
-		modal.present();
+	editForm() {
+
 	}
 	async deleteTrip() {
 		const alert = await this.alertController.create({

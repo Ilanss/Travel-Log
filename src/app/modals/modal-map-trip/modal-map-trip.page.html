@@ -1,18 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Modal Map Trip</ion-title>
-    <ion-button onclick="dismissModal()">Close</ion-button>
+    <ion-button (click)="dismiss()">Close</ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<div class="map" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"></div>
+<div class="map" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)" [leafletLayers]="mapMarkers"></div>
 
 </ion-content>
-
-<script> 
-function dismissModal() {
-  if (currentModal) {
-    currentModal.dismiss().then(() => { currentModal = null; });
-  }
-}</script>
