@@ -10,4 +10,4 @@ export const defaultIcon: Icon<IconOptions> = icon({
     iconUrl: 'leaflet/marker-icon.png',
     // The path to the image's shadow to display. Also a leaflet asset
     shadowUrl: 'leaflet/marker-shadow.png'
-});
+}); 
