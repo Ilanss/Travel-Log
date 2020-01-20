@@ -51,4 +51,9 @@ export class LoginPage {
 			}
 		});
 	}
+	
+	goRegisterPage() {
+		this.router.navigateByUrl('/register')
+	}
+
 }
