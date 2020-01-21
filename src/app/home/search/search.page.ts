@@ -33,6 +33,7 @@ export class SearchPage implements OnInit {
 			console.log(`Places loaded`, places);
 		});
 	}
+	//new search algortihm -- nothing happened
 	/*searchTermChange(event) {
 		//reset liste before filter
 		this.trips = this.tripsCache;
@@ -50,6 +51,8 @@ export class SearchPage implements OnInit {
 
 		console.log(this.trips);
 	} */
+
+	//old search algorithm -- but it works
 	searchTermChange(event) {
 		console.log('tipped');
 		const query = event.target.value.toLowerCase();
