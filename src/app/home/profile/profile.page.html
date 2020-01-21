@@ -18,9 +18,8 @@
 </ion-header>
 
 <ion-content has-header="true" class="ion-padding">
-    <h3 *ngIf="userEdit; else editUser">{{user?.name}}</h3>
+    <h3 *ngIf="userEdit; else editUser">You username: {{user?.name}}</h3>
     <p *ngIf="userEdit">you ave created: {{user?.tripsCount}} trips</p>
-    <ion-button *ngIf="userEdit" color="light" (click)="logOut()">Logout</ion-button>
     <ng-template #editUser>
 
         <form #userForm="ngForm">
@@ -40,10 +39,13 @@
         </form>
 
     </ng-template>
+    <h3 *ngIf="userEdit">Funny stats</h3>
     <p>
-        <ion-label>Total places Count {{placesCount}}</ion-label>
+        <ion-label *ngIf="userEdit">Total number of places: {{placesCount}}</ion-label>
     </p>
     <p>
-        <ion-label>Total trips Count {{tripsCount}}</ion-label>
+        <ion-label *ngIf="userEdit">Total number of trips: {{tripsCount}}</ion-label>
     </p>
+
+    <ion-button expand="block" *ngIf="userEdit" (click)="logOut()">Logout</ion-button>
 </ion-content>
