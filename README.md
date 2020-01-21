@@ -99,7 +99,7 @@ There must be a resource list with filters or search parameters.
 | A user must be able to modify at least one of the resources of the domain model |🔵🔵🔵🔵🔵||
 | A user must be able to delete at least one of the resources of the domain model (e.g. delete a Place in the Travel |🔵🔵🔵🔵🔵||
 |Geolocation of the user |🔵🔵🔵🔵🔵||
-|Multi point on map of the user |🔵🔵🔵🔵⚪️||
-|Take picture and publish |🔵🔵🔵🔵⚪️||
+|Multi point on map of the user |🔵🔵🔵🔵⚪️| Center map on many points|
+|Take picture and publish |🔵🔵🔵🔵⚪️|Not all phone works|
 |Search User/Trip |🔵🔵🔵🔵🔵||
 |Websocket |🔵🔵🔵🔵🔵||
