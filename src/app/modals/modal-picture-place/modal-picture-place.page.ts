@@ -11,6 +11,7 @@ import { PlaceRequest } from 'src/app/models/place-request';
 })
 export class ModalPicturePlace implements OnInit {
 	modal: any;
+	place: any;
 	constructor(
 		private auth: AuthService,
 		// TODO: inject the HTTP client.

@@ -1,6 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-title>Modal Map Trip</ion-title>
+        
         <ion-buttons slot="end">
             <ion-button (click)="dismiss()">
                 <ion-icon name='close'></ion-icon>
@@ -10,5 +11,5 @@
 </ion-header>
 
 <ion-content>
-    <div class="picture"></div>
+    <div class="picture"><img [src]="place.pictureUrl" /></div>
 </ion-content>
