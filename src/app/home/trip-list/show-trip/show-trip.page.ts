@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { ModalController } from '@ionic/angular';
-import { latLng, tileLayer, Map } from 'leaflet';
+import {latLng, tileLayer, Map, marker, Marker, MapOptions} from 'leaflet';
 import { ModalMapTripPage } from 'src/app/modals/modal-map-trip/modal-map-trip.page';
 
 import { DeleteTripService } from './delete-trip.service';
@@ -16,7 +16,7 @@ import { AuthService } from '../../../auth/auth.service';
 
 import { first } from 'rxjs/operators';
 import { TripRequest } from '../../../models/trip-request';
-import {forEach} from "@angular-devkit/schematics";
+import {defaultIcon} from "../../../modals/modal-map-trip/default-marker";
 
 @Component({
 	selector: 'app-show-trip',
@@ -28,8 +28,9 @@ export class ShowTripPage implements OnInit {
 	private sub: any;
 	trip: any;
 	places: any;
-	place: object;
-	mapOptions: any;
+	place: any;
+	mapOptions: MapOptions;
+	mapMarkers: Marker[];
 	tripEdit: boolean;
 	canEdit: boolean;
 	formInvalid: boolean;
@@ -46,13 +47,15 @@ export class ShowTripPage implements OnInit {
 		public alertController: AlertController,
 		private deleteTripService: DeleteTripService,
 		private deletePlaceService: DeletePlaceService,
-		private editTripService: EditTripService
+		private editTripService: EditTripService,
 	) {
 		this.mapOptions = {
 			layers: [ tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }) ],
 			zoom: 13,
 			center: latLng(46.778186, 6.641524)
 		};
+
+
 		this.tripEdit = true;
 		this.canEdit = false;
 		this.formInvalid = false;
@@ -83,10 +86,18 @@ export class ShowTripPage implements OnInit {
 		});
 		//API call to retrieve place data -- BUG
 		const placesUrl = '/api/places/?trip=' + this.id;
+		this.mapMarkers = [];
 		this.http.get(placesUrl).subscribe((places) => {
 			this.places = places;
 			console.log(`Places info loaded`, places);
+			for(let data of this.places){
+				this.mapMarkers.push(marker([ data.location.coordinates[0], data.location.coordinates[1] ], { icon: defaultIcon }));
+			}
+			this.mapOptions.center = latLng(this.places[0].location.coordinates[0], this.places[0].location.coordinates[1]);
+			console.log(this.mapMarkers);
 		});
+
+
 		//geocalisation call for user position data
 		this.geolocation
 			.getCurrentPosition()
@@ -97,6 +108,12 @@ export class ShowTripPage implements OnInit {
 			.catch((err) => {
 				console.warn(`Could not retrieve user position because: ${err.message}`);
 			});
+
+
+	}
+
+	pushInMap(place) {
+		this.mapMarkers.push(marker([ place.location.coordinates[0], place.location.coordinates[1] ], { icon: defaultIcon }));
 	}
 
 	async showMap(placeId) {
