@@ -10,7 +10,7 @@ To use the application, a user must first create an account with travel-log.
 To create an account you need to enter the following information:
 - A username (minimum size 3 characters)
 - A password (minimum size 3 characters)
-[Register Page](https://imgur.com/s9hh5hm)
+[RegisterPage](https://i.imgur.com/s9hh5hm.jpg)
 
 ### Log into travel-log
 Once you have created an account you will be redirected to the login page. The same information entered in the registration form must be entered to confirm authentication and access travel-log.
