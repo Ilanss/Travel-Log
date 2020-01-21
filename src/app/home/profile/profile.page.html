@@ -35,14 +35,8 @@
                 <ion-input type={{passwordType}} inputmode="text" #description="ngModel" [(ngModel)]=user.password [(ngModel)]="userRequest.password" required="true" name="password" clearOnEdit="false"></ion-input>
                 <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
             </ion-item>
-            <h3>Password validation</h3>
-            <!-- passowrd validation -->
-            <ion-item>
-                <ion-input type={{passwordType}} inputmode="text" #description="ngModel" [(ngModel)]=user.validationPassword required="true" name="validation" clearOnEdit="false"></ion-input>
-            </ion-item>
             <!-- Error message displayed if the registration failed -->
             <ion-text color='danger' *ngIf="userError">Username or password is invalid.</ion-text>
-            <ion-text color='danger' *ngIf="passwordError">Both password must be the same</ion-text>
         </form>
 
     </ng-template>
