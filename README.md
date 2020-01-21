@@ -8,8 +8,8 @@ To use the application, a user must first create an account with travel-log.
 
 ### Create an account
 To create an account you need to enter the following information:
-- A username (minimum size 3 characters)
-- A password (minimum size 3 characters)
+- A username
+- A password 
 [RegisterPage](https://i.imgur.com/s9hh5hm.jpg)
 
 ### Log into travel-log
@@ -30,8 +30,8 @@ The most important functionality of Travel-log is the ability to create multiple
 ### Create a trip
 To create a trip, simply press the "+" button located at the bottom right of the "My trips" page.
 To be created a trip needs the following:
-- A title (minimum 3 characters)
-- A description (minimum 5 characters)
+- A title 
+- A description 
 
 ### Show a trip
 Once the trip has been created it will be displayed in your list thanks to a preview and you can access its content by pressing on the appropriate item.
@@ -46,8 +46,8 @@ At the top left, in the toolbar, there is an icon that will allow us to access t
 ## Places managment
 In the trip display screen we can add one or more places by simply pressing the "+" button located at the bottom right.
 To create a places it is necessary to insert the following information:
-- name (minimum 3 characters)
-- descriptions (minimum 5 characters)
+- name 
+- descriptions 
 At the time of creation, Travel-log will automatically detect the position of the device and assign it to the chosen place.
 
 ### Wiew place details
