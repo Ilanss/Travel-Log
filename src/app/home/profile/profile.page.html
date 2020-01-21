@@ -1,22 +1,55 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Profile</ion-title>
-    <!-- Logout button -->
-    <ion-buttons slot="end">
-      <ion-button (click)="logOut()">
-          <ion-icon name='log-out'></ion-icon>
-      </ion-button>
-  </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Profile</ion-title>
+        <!-- Logout button -->
+        <ion-buttons slot="end" *ngIf="userEdit; else checkmark">
+            <ion-button (click)="settings()">
+                <ion-icon name='create'></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ng-template #checkmark>
+            <ion-buttons slot="end">
+                <ion-button (click)="settings()" (click)="onSubmit(onSubmit)">
+                    <ion-icon name='checkmark'></ion-icon>
+                </ion-button>
+            </ion-buttons>
+        </ng-template>
+    </ion-toolbar>
 </ion-header>
 
-  <ion-content has-header="true">
-    <div id="profile-bg"></div>
-    <div id="content">
-      <div id="profile-info">
-        <h3 id="profile-name">Username</h3>
-        <p><ion-label>Total places Count {{placesCount}}</ion-label></p>
-        <p><ion-label>Total trips Count {{placesCount}}</ion-label></p>
-      </div>
-    </div>
+<ion-content has-header="true" class="ion-padding">
+    <h3 *ngIf="userEdit; else editUser">{{user?.name}}</h3>
+    <p *ngIf="userEdit">you ave created: {{user?.tripsCount}} trips</p>
+    <ion-button *ngIf="userEdit" color="light" (click)="logOut()">Logout</ion-button>
+    <ng-template #editUser>
+
+        <form #userForm="ngForm">
+            <h3>Username</h3>
+            <!-- username input -->
+            <ion-item>
+                <ion-input inputmode="text" #title="ngModel" [(ngModel)]=user.username required="true" name="name" [(ngModel)]="userRequest.name"></ion-input>
+            </ion-item>
+            <h3>Password</h3>
+            <!-- passowrd input -->
+            <ion-item>
+                <ion-input type={{passwordType}} inputmode="text" #description="ngModel" [(ngModel)]=user.password [(ngModel)]="userRequest.password" required="true" name="password" clearOnEdit="false"></ion-input>
+                <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+            </ion-item>
+            <h3>Password validation</h3>
+            <!-- passowrd validation -->
+            <ion-item>
+                <ion-input type={{passwordType}} inputmode="text" #description="ngModel" [(ngModel)]=user.validationPassword required="true" name="validation" clearOnEdit="false"></ion-input>
+            </ion-item>
+            <!-- Error message displayed if the registration failed -->
+            <ion-text color='danger' *ngIf="userError">Username or password is invalid.</ion-text>
+            <ion-text color='danger' *ngIf="passwordError">Both password must be the same</ion-text>
+        </form>
+
+    </ng-template>
+    <p>
+        <ion-label>Total places Count {{placesCount}}</ion-label>
+    </p>
+    <p>
+        <ion-label>Total trips Count {{placesCount}}</ion-label>
+    </p>
 </ion-content>

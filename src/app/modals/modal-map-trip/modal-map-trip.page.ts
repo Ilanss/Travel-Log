@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker } from 'leaflet';
-import {NavParams} from "@ionic/angular";
+import { NavParams } from '@ionic/angular';
 import { defaultIcon } from './default-marker';
 import { PlaceRequest } from 'src/app/models/place-request';
 
@@ -13,7 +13,6 @@ import { PlaceRequest } from 'src/app/models/place-request';
 	templateUrl: './modal-map-trip.page.html',
 	styleUrls: [ './modal-map-trip.page.scss' ]
 })
-
 export class ModalMapTripPage implements OnInit {
 	place: PlaceRequest;
 	// devrait être Trip
@@ -36,7 +35,7 @@ export class ModalMapTripPage implements OnInit {
 			center: latLng(this.place.location.coordinates[0], this.place.location.coordinates[1])
 		};
 		this.mapMarkers = [
-			marker([ this.place.location.coordinates[0], this.place.location.coordinates[1] ], { icon: defaultIcon }),
+			marker([ this.place.location.coordinates[0], this.place.location.coordinates[1] ], { icon: defaultIcon })
 		];
 	}
 
@@ -61,7 +60,7 @@ export class ModalMapTripPage implements OnInit {
 		// using the injected ModalController this page
 		// can "dismiss" itself and optionally pass back data
 		this.modal.dismiss({
-			'dismissed': true
+			dismissed: true
 		});
 	}
 }
