@@ -62,6 +62,8 @@ To create a places it is necessary to insert the following information:
 - descriptions 
 At the time of creation, Travel-log will automatically detect the position of the device and assign it to the chosen place.
 
+[Create place page](https://i.imgur.com/Ubs2yXi.jpg)
+
 ### Wiew place details
 By pressing on the map icon associated with each places we will be redirected to the complete view of the map.
 By clicking on the photo icon associated with each places we will be redirected to the cover photo of the chosen place.
