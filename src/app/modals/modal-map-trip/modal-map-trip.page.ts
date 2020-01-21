@@ -6,6 +6,7 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker } from 'leaflet';
 import { NavParams } from '@ionic/angular';
 import { defaultIcon } from './default-marker';
+import { PlaceRequest } from 'src/app/models/place-request';
 
 @Component({
 	selector: 'app-modal-map-trip',
@@ -13,7 +14,7 @@ import { defaultIcon } from './default-marker';
 	styleUrls: [ './modal-map-trip.page.scss' ]
 })
 export class ModalMapTripPage implements OnInit {
-	place: object;
+	place: PlaceRequest;
 	// devrait être Trip
 	mapOptions: MapOptions;
 	mapMarkers: Marker[];
@@ -31,10 +32,14 @@ export class ModalMapTripPage implements OnInit {
 		this.mapOptions = {
 			layers: [ tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }) ],
 			zoom: 13,
-			center: latLng(this.place.location.coordinates[1], this.place.location.coordinates[0])
+			center: latLng(this.place.location.coordinates[0], this.place.location.coordinates[1])
 		};
 		this.mapMarkers = [
+<<<<<<< HEAD
 			marker([ this.place.location.coordinates[1], this.place.location.coordinates[0] ], { icon: defaultIcon })
+=======
+			marker([ this.place.location.coordinates[0], this.place.location.coordinates[1] ], { icon: defaultIcon }),
+>>>>>>> df676831d9db85536f1ae94b96d64d760763674d
 		];
 	}
 
