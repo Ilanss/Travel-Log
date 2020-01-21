@@ -51,7 +51,7 @@
                 {{place?.name}}
             </ion-label>
             <ion-icon name="map" slot="end" (click)="showMap(place?.id)" *ngIf="tripEdit; else editPlace"></ion-icon>
-            <ion-icon name="image" slot="end" (click)="showPhoto(place?.id)" *ngIf="tripEdit"></ion-icon>
+            <ion-icon name="image" slot="end" (click)="showPicture(place?.id)" *ngIf="tripEdit"></ion-icon>
 
             <ng-template #editPlace>
                 <ion-icon name="trash" slot="end" (click)="deletePlace(place.id)"></ion-icon>

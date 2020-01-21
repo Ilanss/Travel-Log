@@ -17,11 +17,12 @@ import { AuthService } from '../../../auth/auth.service';
 import { first } from 'rxjs/operators';
 import { TripRequest } from '../../../models/trip-request';
 import { defaultIcon } from '../../../modals/modal-map-trip/default-marker';
+import { ModalPicturePlace } from 'src/app/modals/modal-picture-place/modal-picture-place.page';
 
 @Component({
 	selector: 'app-show-trip',
 	templateUrl: './show-trip.page.html',
-	styleUrls: [ './show-trip.page.scss' ]
+	styleUrls: ['./show-trip.page.scss']
 })
 export class ShowTripPage implements OnInit {
 	id: number;
@@ -50,7 +51,7 @@ export class ShowTripPage implements OnInit {
 		private editTripService: EditTripService
 	) {
 		this.mapOptions = {
-			layers: [ tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }) ],
+			layers: [tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 })],
 			zoom: 13,
 			center: latLng(46.778186, 6.641524)
 		};
@@ -91,7 +92,7 @@ export class ShowTripPage implements OnInit {
 			console.log(`Places info loaded`, places);
 			for (let data of this.places) {
 				this.mapMarkers.push(
-					marker([ data.location.coordinates[0], data.location.coordinates[1] ], { icon: defaultIcon })
+					marker([data.location.coordinates[0], data.location.coordinates[1]], { icon: defaultIcon })
 				);
 			}
 			this.mapOptions.center = latLng(
@@ -115,7 +116,7 @@ export class ShowTripPage implements OnInit {
 
 	pushInMap(place) {
 		this.mapMarkers.push(
-			marker([ place.location.coordinates[0], place.location.coordinates[1] ], { icon: defaultIcon })
+			marker([place.location.coordinates[0], place.location.coordinates[1]], { icon: defaultIcon })
 		);
 	}
 
@@ -133,6 +134,22 @@ export class ShowTripPage implements OnInit {
 			});
 			return await modal.present();
 		});
+	}
+	async showPicture(placeId) {
+		//show modal picture
+		const placeUrl = '/api/places/' + placeId;
+		this.http.get(placeUrl).subscribe(async (place) => {
+			this.place = place;
+
+			const modal = await this.modalController.create({
+				component: ModalPicturePlace,
+				componentProps: {
+					place: this.place
+				}
+			});
+			return await modal.present();
+		});
+
 	}
 
 	onMapReady(map: Map) {
@@ -164,7 +181,7 @@ export class ShowTripPage implements OnInit {
 
 					handler: () => {
 						this.deletePlaceService.delete(placeId).subscribe({
-							next: () => {},
+							next: () => { },
 							error: (err) => {
 								console.log(this.id);
 								console.warn(`error: ${err.message}`);
@@ -182,7 +199,7 @@ export class ShowTripPage implements OnInit {
 			this.tripEdit = !this.tripEdit;
 		}
 	}
-	editForm() {}
+	editForm() { }
 	async deleteTrip() {
 		const alert = await this.alertController.create({
 			header: 'Alert',
@@ -228,7 +245,7 @@ export class ShowTripPage implements OnInit {
 
 		// Perform the authentication request to the API.
 		this.editTripService.edit(this.id, this.tripRequest).pipe(first()).subscribe({
-			next: () => {},
+			next: () => { },
 			error: (err) => {
 				console.log(this.tripRequest);
 				this.tripError = true;
@@ -239,5 +256,5 @@ export class ShowTripPage implements OnInit {
 	back() {
 		this.router.navigateByUrl('/home/trip-list');
 	}
-	showPhoto() {}
+
 }
