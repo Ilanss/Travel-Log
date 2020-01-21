@@ -1,3 +1,5 @@
+import { QimgImage } from './qimg-image';
+
 export class PlaceRequest {
     name: string;
 	description: string;
@@ -6,4 +8,5 @@ export class PlaceRequest {
 		coordinates: [number, number]
 	};
 	tripId: number;
+	pictureUrl: string;
 }

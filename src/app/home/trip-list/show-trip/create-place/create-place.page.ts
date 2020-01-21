@@ -17,7 +17,7 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 })
 export class CreatePlacePage implements OnInit {
 	pictureData: string;
-	picture: QimgImage;
+	picture: string;
 	placeRequest: PlaceRequest;
 	placeError: boolean;
 	id: number;
@@ -31,6 +31,7 @@ export class CreatePlacePage implements OnInit {
 		private route: ActivatedRoute,
 		private pictureService: PictureService,
 		private geolocation: Geolocation
+		
 	) {
 		this.placeRequest = new PlaceRequest();
 	}
@@ -42,8 +43,9 @@ export class CreatePlacePage implements OnInit {
 			mediaType: this.camera.MediaType.PICTURE
 		};
 		this.pictureService.takeAndUploadPicture().subscribe(picture => {
-			this.picture = picture;
-			console.log(this.picture.url)
+			this.picture = picture.url;
+			this.placeRequest.pictureUrl = this.picture;
+			console.log(this.picture)
 		}, err => {
 			console.warn('Could not take picture', err);
 		});
@@ -64,6 +66,7 @@ export class CreatePlacePage implements OnInit {
 			.pipe(first())
 			.subscribe({
 				next: () => {
+					
 					this.router.navigateByUrl('/home/show-trip/'+this.id);
 				},
 				error: err => {

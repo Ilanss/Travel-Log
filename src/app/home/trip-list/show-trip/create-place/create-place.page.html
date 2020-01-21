@@ -12,7 +12,7 @@
 <ion-content padding>
 
     <ion-button (click)='takePicture()'>Take picture</ion-button>
-    <img *ngIf='picture' [src]='picture.url' />
+    <img *ngIf='picture' [src]='picture' />
     <form #placeForm="ngForm" (submit)="onSubmit(placeForm)">
         <ion-item>
             <ion-label position="stacked">Place Name<ion-text color="danger">*</ion-text></ion-label>
@@ -28,5 +28,5 @@
         <ion-button type="submit">Submit</ion-button>
     </form>
 
-    <img *ngIf="pictureData" src="data:image/jpeg;base64,{{ picture.url }}" />
+    <img *ngIf="pictureData" src="data:image/jpeg;base64,{{ picture }}" />
 </ion-content>
