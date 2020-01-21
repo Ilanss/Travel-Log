@@ -23,6 +23,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+    <div class="map" style="height:200px" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)" [leafletLayers]="mapMarkers"></div>
     <h3 *ngIf="tripEdit">Description</h3>
     <p *ngIf="tripEdit; else editDescription">{{trip?.description}}</p>
     <ng-template #editDescription>
