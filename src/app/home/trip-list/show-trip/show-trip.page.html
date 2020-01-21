@@ -46,12 +46,13 @@
     </ng-template>
     <h3>Places</h3>
     <ion-list *ngFor='let place of places'>
-        <ion-item (click)="showMap(place?.id)">
+        <ion-item>
             <ion-label>
                 {{place?.name}}
             </ion-label>
-            <img [src]="place.pictureUrl" />
-            <ion-icon name="map" slot="end" (click)="openModalMapTrip()" *ngIf="tripEdit; else editPlace"></ion-icon>
+            <ion-icon name="map" slot="end" (click)="showMap(place?.id)" *ngIf="tripEdit; else editPlace"></ion-icon>
+            <ion-icon name="image" slot="end" (click)="showPhoto(place?.id)" *ngIf="tripEdit"></ion-icon>
+
             <ng-template #editPlace>
                 <ion-icon name="trash" slot="end" (click)="deletePlace(place.id)"></ion-icon>
             </ng-template>
