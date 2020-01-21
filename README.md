@@ -16,6 +16,8 @@ To create an account you need to enter the following information:
 ### Log into travel-log
 Once you have created an account you will be redirected to the login page. The same information entered in the registration form must be entered to confirm authentication and access travel-log.
 
+[View Login page](https://i.imgur.com/WcrhS6O.jpg)
+
 ### Log out 
 To exit the application it is necessary to log out by pressing the "logout" button located at the bottom of the profile management page which we will analyze later.
 
@@ -24,6 +26,11 @@ Travel log is made up of 3 main pages:
 - MyTrips (allows you to view your travel list)
 - Search (allows you to search and filter every trips and places created by all travelLog users)
 - Profile (allows you to manage information about your profile and log out).
+
+[Search Page](https://i.imgur.com/8RjT9lL.jpg)
+[Prfile page](https://i.imgur.com/tGn4wXX.jpg)
+[MyTrips page](https://i.imgur.com/Xqxkqfb.jpg)
+
 
 ## Trips managment
 The most important functionality of Travel-log is the ability to create multiple trips.
@@ -34,12 +41,16 @@ To be created a trip needs the following:
 - A title 
 - A description 
 
+[Create trip page](https://i.imgur.com/vh4qwCH.jpg)
+
 ### Show a trip
 Once the trip has been created it will be displayed in your list thanks to a preview and you can access its content by pressing on the appropriate item.
 Viewing a trip consists of 3 parts:
 - A preview of the travel map
 - The description and title of the trip
 - a list of places related to this specific trip
+
+[Show trip page](https://i.imgur.com/XNDkMzs.jpg)
 
 ### Edit a trip
 At the top left, in the toolbar, there is an icon that will allow us to access the modification of the element. In this mode, we can change the description or the title of the trip, delete one or more places using the "trash" icons next to each place and, if we wish, delete the trip itself by pressing the red button at the bottom right.
@@ -55,7 +66,8 @@ At the time of creation, Travel-log will automatically detect the position of th
 By pressing on the map icon associated with each places we will be redirected to the complete view of the map.
 By clicking on the photo icon associated with each places we will be redirected to the cover photo of the chosen place.
 
-[![maquette](https://imagizer.imageshack.com/img921/2264/JWCBfV.png "maquette")](https://imagizer.imageshack.com/img921/2264/JWCBfV.png "maquette")
+[Complete map](https://i.imgur.com/6UHsaN8.jpg)
+[Cover image](https://i.imgur.com/dec8WSZ.jpg)
 
 
 ## Features
