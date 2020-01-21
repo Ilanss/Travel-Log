@@ -49,7 +49,7 @@
             <ion-label>
                 {{place?.name}}
             </ion-label>
-            <ion-icon name="map" slot="end" (click)="openModalMapTrip()" *ngIf="tripEdit; else editPlace"></ion-icon>
+            <ion-icon name="map" slot="end" *ngIf="tripEdit; else editPlace"></ion-icon>
             <ng-template #editPlace>
                 <ion-icon name="trash" slot="end" (click)="deletePlace(place.id)"></ion-icon>
             </ng-template>

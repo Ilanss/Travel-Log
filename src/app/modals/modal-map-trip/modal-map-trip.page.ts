@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker } from 'leaflet';
-import {NavParams} from "@ionic/angular";
+import { NavParams } from '@ionic/angular';
 import { defaultIcon } from './default-marker';
 
 @Component({
@@ -12,12 +12,12 @@ import { defaultIcon } from './default-marker';
 	templateUrl: './modal-map-trip.page.html',
 	styleUrls: [ './modal-map-trip.page.scss' ]
 })
-
 export class ModalMapTripPage implements OnInit {
 	place: object;
 	// devrait être Trip
 	mapOptions: MapOptions;
 	mapMarkers: Marker[];
+	modal: any;
 	constructor(
 		private auth: AuthService,
 		// TODO: inject the HTTP client.
@@ -34,7 +34,7 @@ export class ModalMapTripPage implements OnInit {
 			center: latLng(this.place.location.coordinates[1], this.place.location.coordinates[0])
 		};
 		this.mapMarkers = [
-			marker([ this.place.location.coordinates[1], this.place.location.coordinates[0] ], { icon: defaultIcon }),
+			marker([ this.place.location.coordinates[1], this.place.location.coordinates[0] ], { icon: defaultIcon })
 		];
 	}
 
@@ -59,7 +59,7 @@ export class ModalMapTripPage implements OnInit {
 		// using the injected ModalController this page
 		// can "dismiss" itself and optionally pass back data
 		this.modal.dismiss({
-			'dismissed': true
+			dismissed: true
 		});
 	}
 }
