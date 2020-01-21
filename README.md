@@ -27,8 +27,8 @@ Travel log is made up of 3 main pages:
 - Search (allows you to search and filter every trips and places created by all travelLog users)
 - Profile (allows you to manage information about your profile and log out).
 
-[Search Page](https://i.imgur.com/8RjT9lL.jpg)
-[Prfile page](https://i.imgur.com/tGn4wXX.jpg)
+[Search Page](https://i.imgur.com/8RjT9lL.jpg) -  
+[Profile page](https://i.imgur.com/tGn4wXX.jpg) - 
 [MyTrips page](https://i.imgur.com/Xqxkqfb.jpg)
 
 
