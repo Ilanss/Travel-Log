@@ -35,11 +35,7 @@ export class ModalMapTripPage implements OnInit {
 			center: latLng(this.place.location.coordinates[0], this.place.location.coordinates[1])
 		};
 		this.mapMarkers = [
-<<<<<<< HEAD
-			marker([ this.place.location.coordinates[1], this.place.location.coordinates[0] ], { icon: defaultIcon })
-=======
-			marker([ this.place.location.coordinates[0], this.place.location.coordinates[1] ], { icon: defaultIcon }),
->>>>>>> df676831d9db85536f1ae94b96d64d760763674d
+			marker([ this.place.location.coordinates[0], this.place.location.coordinates[1] ], { icon: defaultIcon })
 		];
 	}
 
