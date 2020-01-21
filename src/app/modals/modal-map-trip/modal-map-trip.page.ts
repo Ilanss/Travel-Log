@@ -31,10 +31,10 @@ export class ModalMapTripPage implements OnInit {
 		this.mapOptions = {
 			layers: [ tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }) ],
 			zoom: 13,
-			center: latLng(this.place.location.coordinates[1], this.place.location.coordinates[0])
+			center: latLng(this.place.location.coordinates[0], this.place.location.coordinates[1])
 		};
 		this.mapMarkers = [
-			marker([ this.place.location.coordinates[1], this.place.location.coordinates[0] ], { icon: defaultIcon }),
+			marker([ this.place.location.coordinates[0], this.place.location.coordinates[1] ], { icon: defaultIcon }),
 		];
 	}
 
