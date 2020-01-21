@@ -6,6 +6,7 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { latLng, MapOptions, tileLayer, Map, Marker, marker } from 'leaflet';
 import {NavParams} from "@ionic/angular";
 import { defaultIcon } from './default-marker';
+import { PlaceRequest } from 'src/app/models/place-request';
 
 @Component({
 	selector: 'app-modal-map-trip',
@@ -14,10 +15,11 @@ import { defaultIcon } from './default-marker';
 })
 
 export class ModalMapTripPage implements OnInit {
-	place: object;
+	place: PlaceRequest;
 	// devrait être Trip
 	mapOptions: MapOptions;
 	mapMarkers: Marker[];
+	modal: any;
 	constructor(
 		private auth: AuthService,
 		// TODO: inject the HTTP client.
