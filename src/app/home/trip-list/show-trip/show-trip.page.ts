@@ -114,12 +114,6 @@ export class ShowTripPage implements OnInit {
 			});
 	}
 
-	pushInMap(place) {
-		this.mapMarkers.push(
-			marker([place.location.coordinates[0], place.location.coordinates[1]], { icon: defaultIcon })
-		);
-	}
-
 	async showMap(placeId) {
 		//show modal with map
 		const placeUrl = '/api/places/' + placeId;
@@ -153,8 +147,19 @@ export class ShowTripPage implements OnInit {
 	}
 
 	onMapReady(map: Map) {
+
+		const placesUrl = '/api/places/?trip=' + this.id;
+		this.mapMarkers = [];
+		this.http.get(placesUrl).subscribe((places) => {
+			this.places = places;
+			map.setView(latLng(
+				this.places[0].location.coordinates[0],
+				this.places[0].location.coordinates[1]), 13);
+		});
+
 		setTimeout(() => map.invalidateSize(), 0);
 	}
+
 	ngOnDestroy() {
 		this.sub.unsubscribe();
 	}
